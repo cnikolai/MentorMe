@@ -3,7 +3,6 @@ const interestController = require("../../controllers/interestController");
 
 // Matches with "/api/interest"
 router.route("/")
-    .get(interestController.findAll)
     .post(interestController.create);
 
 // Matches with "/api/interest/:id"
