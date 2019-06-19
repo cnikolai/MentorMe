@@ -4,7 +4,7 @@ import { Route, Link } from 'react-router-dom'
 // components
 import Register from './pages/Register'
 import Login from './pages/Login'
-import Navbar from './components/Navbar'
+import Navbar from './components/Nav/Navbar'
 import Home from './pages/Home'
 
 class App extends Component {
