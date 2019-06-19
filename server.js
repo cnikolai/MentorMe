@@ -38,15 +38,11 @@ mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/mentorme");
 mongoose.set('debug', true);
 
 //Models & routes
-require('./models/Users');
 require('./config/passport');
 const routes = require("./routes");
 
 // Add routes, both API and view
 app.use(routes);
-
-// Connect to the Mongo DB
-mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/mentorme");
 
 // Start the API server
 app.listen(PORT, function () {
