@@ -45,6 +45,7 @@ const routes = require("./routes");
 // Add routes, both API and view
 app.use(routes);
 
+<<<<<<< HEAD
 //Error handlers & middlewares
 if(!isProduction) {
   app.use((err, req, res, next) => {
@@ -69,8 +70,12 @@ app.use((err, req, res, next) => {
     },
   });
 });
+=======
+// Connect to the Mongo DB
+mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/mentorme");
+>>>>>>> fixed working routes again from missing / in routes/api/index.js for user and interest router
 
 // Start the API server
-app.listen(PORT, function() {
+app.listen(PORT, function () {
   console.log(`🌎  ==> API Server now listening on PORT ${PORT}!`);
 });
