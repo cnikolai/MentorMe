@@ -71,6 +71,6 @@ app.use((err, req, res, next) => {
 });
 
 // Start the API server
-app.listen(PORT, function () {
+app.listen(PORT, function() {
   console.log(`🌎  ==> API Server now listening on PORT ${PORT}!`);
 });
