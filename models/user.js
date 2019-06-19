@@ -26,10 +26,11 @@ const userSchema = new Schema({
 
 });
 
-userSchema.pre('remove', function (next) {
-    Interest.remove({ _id: this._id }).exec();
-    next();
-});
+// For cascading delelte of user's interests if the user is deleted
+// userSchema.pre('remove', function (next) {
+//     Interest.remove({ _id: this._id }).exec();
+//     next();
+// });
 
 const User = mongoose.model("User", userSchema);
 
