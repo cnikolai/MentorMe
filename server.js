@@ -29,7 +29,7 @@ if (process.env.NODE_ENV === "production") {
   app.use(express.static("client/build"));
 }
 
-if(!isProduction) {
+if (!isProduction) {
   app.use(errorHandler());
 }
 
@@ -38,39 +38,13 @@ mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/mentorme");
 mongoose.set('debug', true);
 
 //Models & routes
-require('./models/Users');
 require('./config/passport');
 const routes = require("./routes");
 
 // Add routes, both API and view
 app.use(routes);
 
-//Error handlers & middlewares
-if(!isProduction) {
-  app.use((err, req, res, next) => {
-    res.status(err.status || 500);
-
-    res.json({
-      errors: {
-        message: err.message,
-        error: err,
-      },
-    });
-  });
-}
-
-app.use((err, req, res, next) => {
-  res.status(err.status || 500);
-
-  res.json({
-    errors: {
-      message: err.message,
-      error: {},
-    },
-  });
-});
-
 // Start the API server
-app.listen(PORT, function() {
+app.listen(PORT, function () {
   console.log(`🌎  ==> API Server now listening on PORT ${PORT}!`);
 });
