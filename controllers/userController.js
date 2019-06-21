@@ -17,8 +17,10 @@ module.exports = {
       .catch(err => res.status(422).json(err));
   },
   create: function (req, res) {
+    var user = new db.User(req.body);
+    user.setPassword(req.body.password);
     db.User
-      .create(req.body)
+      .create(user)
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
   },
