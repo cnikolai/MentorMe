@@ -6,7 +6,6 @@ class Home extends Component {
         super()
     }
 
-
     render() {
         const imageStyle = {
             width: 400
