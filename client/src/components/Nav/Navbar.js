@@ -33,13 +33,13 @@ class Navbar extends Component {
         console.log(this.props);
         
         return (
-            <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
                 <Link to="/" className="navbar-brand logo">
-                    <h3>MentorMe</h3>
+                    <h3>Mentor.Me</h3>
                 </Link>
 
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
+                <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span className="navbar-toggler-icon"></span>
                 </button>
 
                 <div className="collapse navbar-collapse nav justify-content-end" id="navbarNav">
@@ -61,13 +61,13 @@ class Navbar extends Component {
                                 <span id="home" className="text-secondary">Home</span>
                             </Link>
                             <Link to="" className="btn btn-link text-secondary">
-                                <span id="about" class="nav-link" href="#">About</span>
+                                <span id="about" className="nav-link" href="#">About</span>
                             </Link>
                             <Link to="" className="btn btn-link text-secondary">
-                                <span id="profile" class="nav-link" href="#">Profile</span>
+                                <span id="profile" className="nav-link" href="#">Profile</span>
                             </Link>
                             <Link to="" className="btn btn-link text-secondary">
-                                <span id="connect" class="nav-link" href="#">Connect</span>
+                                <span id="connect" className="nav-link" href="#">Connect</span>
                             </Link>
                             <Link to="/login" className="btn btn-link text-secondary">
                                 <span id="login" className="text-secondary">Login</span>
