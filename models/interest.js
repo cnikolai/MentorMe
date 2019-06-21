@@ -2,7 +2,22 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const interestSchema = new Schema({
-    // Interests will go here
+
+    q1: {
+        type: Number
+    },
+    q2: {
+        type: Number
+    },
+    q3: {
+        type: Number
+    },
+    q4: {
+        type: Number
+    },
+    q5: {
+        type: Number
+    }
 
 });
 
