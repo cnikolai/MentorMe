@@ -5,17 +5,15 @@ class Home extends Component {
         super()
     }
 
-
     render() {
         const imageStyle = {
             width: 400
         }
         return (
             <div>
-                <p>It's good to be home</p>
+                <p>home page</p>
             </div>
         )
-
     }
 }
 
