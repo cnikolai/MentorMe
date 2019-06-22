@@ -26,9 +26,7 @@ html {
     padding-top: 2%;
 }
 
-.profile-view {
-    background-color: blue;
-    color: azure;
+#profile-view {
     height: auto;
 }
 
@@ -38,6 +36,7 @@ html {
     padding: 30px 10px 30px 10px;
     margin-bottom: 2%;
     font-size: 30px;
+    background-color: black;
 }
 
 #username:hover {

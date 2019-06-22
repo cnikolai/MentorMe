@@ -1,13 +1,39 @@
 import React, { Component } from 'react'
+import UserProfile from '../components/UserProfile/Index'
 import './style.css'
 
 class Profile extends Component {
+  state = {
+    displayUser: false
+  }
+
     constructor() {
         super()
     }
 
     userClick() {
-        console.log('The user was clicked.');
+      console.log('The user was clicked.');
+
+    }
+
+    fMentorClick() {
+      console.log('fMentor was clicked.');
+      
+    }
+
+    mentorClick() {
+      console.log('The Mentor was clicked.');
+      
+    }
+
+    chatClick() {
+      console.log('The chat was clicked.');
+      
+    }
+
+    logoutClick() {
+      console.log('Log out was clicked.');
+      
     }
 
     render() {
@@ -18,30 +44,38 @@ class Profile extends Component {
 
                 <div className="col-2 user-info">
 
-                  <div className="user-options" id="username" onClick={userClick}>Username
+                  <div className="user-options" id="username" onClick={this.userClick}>
+                    UserName
                   
                   </div>
 
-                  <div className="user-options" id='fMentor'>Find Mentors
+                  <div className="user-options" id='fMentor' onClick={this.fMentorClick}>
+                    Find Mentors
 
                   </div>
 
-                  <div className="user-options" id='mentor'>Mentors
+                  <div className="user-options" id='mentor'onClick={this.mentorClick}>
+                    Mentors
 
                   </div>
 
-                  <div className="user-options" id='chat'>Chats
+                  <div className="user-options" id='chat' onClick={this.chatClick}>
+                    Chats
                   
                   </div>
 
-                  <div className="user-options" id='logout'>Log Out
+                  <div className="user-options" id='logout' onClick={this.logoutClick}>
+                    Log Out
                   
                   </div>
 
                 </div>
 
-                <div className="col-10 profile-view">
-                  <p>info</p>
+                <div className="col-10" id="profile-view">
+                  <div id="user-profile">
+                    <UserProfile>
+                    </UserProfile>
+                  </div>
                 </div>
 
               </div>
