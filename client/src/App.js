@@ -6,6 +6,7 @@ import Register from './pages/Register'
 import Login from './pages/Login'
 import Navbar from './components/Nav/Navbar'
 import Home from './pages/Home'
+import Profile from './pages/Profile'
 
 class App extends Component {
   constructor() {
@@ -62,6 +63,9 @@ class App extends Component {
         <Route
           exact path="/"
           component={Home} />
+        <Route
+          exact path="/profile"
+          component={Profile} />
         <Route
           path="/login"
           render={() =>

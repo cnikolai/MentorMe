@@ -64,8 +64,8 @@ class Navbar extends Component {
                             <Link to="" className="btn btn-link text-secondary">
                                 <span id="about" className="nav-link" href="#">About</span>
                             </Link>
-                            <Link to="" className="btn btn-link text-secondary">
-                                <span id="profile" className="nav-link" href="#">Profile</span>
+                            <Link to="/profile" className="btn btn-link text-secondary">
+                                <span id="profile" className="text-secondary">Profile</span>
                             </Link>
                             <Link to="" className="btn btn-link text-secondary">
                                 <span id="connect" className="nav-link" href="#">Connect</span>
