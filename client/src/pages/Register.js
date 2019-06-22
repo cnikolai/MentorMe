@@ -49,9 +49,6 @@ class Register extends Component {
 	render() {
 		return (
 			<div className="container">
-				{/* <div className="page-header-image" style="background-image:
-                url(‘./assets/img/presentation-page/nuk-pro-back-sky.jpg’)"> 
-            	</div> */}
 				<div className="row mt-5">
 					<div className="col-5"></div>
 					<div className="SignupForm col-7">
