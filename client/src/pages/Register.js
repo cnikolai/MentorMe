@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { Redirect } from 'react-router-dom'
 import axios from 'axios'
 
 class Register extends Component {
@@ -24,29 +25,31 @@ class Register extends Component {
 		event.preventDefault()
 
 		//request to server to add a new username/password
-		axios.post('/api/user/', {
+		axios.post('/users/register', {
 			username: this.state.username,
 			password: this.state.password,
 			email: this.state.email
 		})
 			.then(response => {
-				console.log(response)
-				if (!response.data.errmsg) {
+				if (response.data.ok) {
 					console.log('successful signup')
 					this.setState({ //redirect to login page
 						redirectTo: '/login'
-					})
+					});
 				} else {
-					console.log('username already taken')
+					//TODO: put a warning at the top of the page
+					console.log('username already taken');
 				}
 			}).catch(error => {
-				console.log('signup error: ')
-				console.log(error)
-
+				console.log('signup error: ');
+				console.log(error);
 			})
 	}
 
 	render() {
+		if (this.state.redirectTo) {
+            return <Redirect to={{ pathname: this.state.redirectTo }} />
+        } else {
 		return (
 			<div className="container">
 				<div className="row mt-5">
@@ -124,6 +127,7 @@ class Register extends Component {
 			</div>
 		)
 	}
+}
 }
 
 export default Register

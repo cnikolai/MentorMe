@@ -22,30 +22,30 @@ class Login extends Component {
     }
 
     handleSubmit(event) {
-        event.preventDefault()
-        console.log('handleSubmit')
-
+        event.preventDefault();
+        console.log('handleSubmit');
         axios
-            .post('/user/login', {
+            .post('/users/login', {
                 username: this.state.username,
                 password: this.state.password
             })
             .then(response => {
                 console.log('login response: ')
-                console.log(response)
+                console.log(response.data)
                 if (response.status === 200) {
                     // update App.js state
+                    console.log("login username: ", response.data);
                     this.props.updateUser({
                         loggedIn: true,
-                        username: response.data.username
+                        username: this.state.username
                     })
                     // update the state to redirect to home
                     this.setState({
                         redirectTo: '/'
-                    })
+                    });
                 }
             }).catch(error => {
-                console.log('login error: ')
+                console.log('login error: ');
                 console.log(error);
 
             })
