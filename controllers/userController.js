@@ -52,7 +52,13 @@ module.exports = {
   },
   remove: function (req, res) {
     db.User
-      .findById({ _id: req.params.id })
+      .findById({ _id: req.params.id }, function (err, user) {
+        Interset.remove({
+          "_id": {
+            $in: user.interest
+          }
+        })
+      })
       .then(dbModel => dbModel.remove())
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(466).json(err));
