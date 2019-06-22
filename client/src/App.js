@@ -7,6 +7,7 @@ import Login from './pages/Login'
 import Navbar from './components/Nav/Navbar'
 import Home from './pages/Home'
 import Profile from './pages/Profile'
+import API from './utils/API';
 
 class App extends Component {
   constructor() {
@@ -30,7 +31,8 @@ class App extends Component {
   }
 
   getUser() {
-    axios.get('/user/').then(response => {
+    //API.getUser(username);
+    axios.get('api/user/').then(response => {
       console.log('Get user response: ')
       console.log(response.data)
       if (response.data.user) {
@@ -53,11 +55,10 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-   
         <Navbar updateUser={this.updateUser} loggedIn={this.state.loggedIn} />
         {/* greet user if logged in: */}
         {this.state.loggedIn &&
-          <p>Join the party, {this.state.username}!</p>
+          <p>Hello, {this.state.username}!</p>
         }
         {/* Routes to different components */}
         <Route
@@ -78,7 +79,6 @@ class App extends Component {
           render={() =>
             <Register/>}
         />
-
       </div>
     );
   }
