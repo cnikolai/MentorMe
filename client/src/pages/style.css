@@ -1,7 +1,7 @@
 html {
     position: relative;
     text-align: center;
-    background-color: black;
+    background-color: white;
 }
 
 .centered {
@@ -16,4 +16,50 @@ html {
     border-radius: 30px 30px 30px 30px;
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
     opacity: .8;
+}
+
+.user-info {
+    background-color: grey;
+    color: white;
+    height: auto;
+    padding-bottom: 100%;
+    padding-top: 2%;
+}
+
+#profile-view {
+    height: auto;
+}
+
+.user-options {
+    border: solid;
+    /* border-color: black; */
+    padding: 30px 10px 30px 10px;
+    margin-bottom: 2%;
+    font-size: 30px;
+    background-color: black;
+}
+
+#username:hover {
+    background-color: silver;
+    color: black;
+}
+
+#fMentor:hover {
+    background-color: silver;
+    color: black;
+}
+
+#mentor:hover {
+    background-color: silver;
+    color: black;
+}
+
+#chat:hover {
+    background-color: silver;
+    color: black;
+}
+
+#logout:hover {
+    background-color: rgb(177, 39, 39);
+    color: white;
 }
