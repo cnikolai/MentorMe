@@ -8,8 +8,8 @@ const session = require('express-session');
 const mongoose = require('mongoose');
 const errorHandler = require('errorhandler');
 //const db = require('./models');
-var flash=require("connect-flash");
-
+var flash = require("connect-flash");
+const indeed = require('indeed-scraper');
 
 //Configure mongoose's promise to global promise
 mongoose.promise = global.Promise;
@@ -44,7 +44,7 @@ app.use(flash());
 // Passport Config
 require('./config/passport')(passport);
 
-app.use(function(req, res, next) {
+app.use(function (req, res, next) {
   res.locals.success_msg = req.flash('success_msg');
   res.locals.error_msg = req.flash('error_msg');
   res.locals.error = req.flash('error');
@@ -70,6 +70,7 @@ mongoose.set('debug', true);
 //Models & routes
 //require('./config/passport');
 const routes = require("./routes");
+// app.use(indeed);
 
 // Add routes, both API and view
 app.use(routes);
