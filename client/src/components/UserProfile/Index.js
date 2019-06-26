@@ -13,13 +13,22 @@ class UserProfile extends Component {
 
     render() {
         return (
-            <div className='container-fluid text-center'>
+            <div className='container-fluid text-center profile'>
                 <div className="row">
                     <div className='col' id="userImage">
                         <img src="../../images/coder.jpg" className="img-fluid" alt="img-thumbnail" />
                     </div>
+
                     <div className='col' id="userInfo">
-                        <p>Users Info</p>
+                        <p>User Name</p>
+                        <p>User Location</p>
+                        <p>User Profession</p>
+                        <p>User Interests</p>
+                    </div>
+                </div>
+                <div className="row quest">
+                    <div className='col' id='questions'>
+                        questions here
                     </div>
                 </div>
             </div>
