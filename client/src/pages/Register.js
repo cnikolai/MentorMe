@@ -8,8 +8,8 @@ class Register extends Component {
 		this.state = {
 			username: '',
 			password: '',
-			email: '',
-			isMentee: true
+			confirmPassword: '',
+			email: ''
 		}
 		this.handleSubmit = this.handleSubmit.bind(this)
 		this.handleChange = this.handleChange.bind(this)
@@ -28,8 +28,7 @@ class Register extends Component {
 		axios.post('/users/register', {
 			username: this.state.username,
 			password: this.state.password,
-			email: this.state.email,
-			isMentee: this.state.isMentee
+			email: this.state.email
 		})
 			.then(response => {
 				if (response.data.ok) {
@@ -105,19 +104,15 @@ class Register extends Component {
 									/>
 								</div>
 							</div>
-							{/* <div className="dropdown">
+							<div className="dropdown">
 								<button className="btn btn-secondary dropdown-toggle my-3" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-									Dropdown button
-  								</button> */}
-								{/* <div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
+									Select One
+  								</button>
+								<div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
 									<a className="dropdown-item" href="#">Mentor</a>
 									<a className="dropdown-item" href="#">Mentee</a>
-								</div> */}
-								<select className="dropdown-menu">
-									<option value="false">Mentor</option>
-									<option value="true">Mentee</option>
-								</select> 
-							{/* </div> */}
+								</div>
+							</div>
 							<div className="form-group ">
 								<div className="col-7"></div>
 								<button
@@ -130,7 +125,6 @@ class Register extends Component {
 					</div>
 				</div>
 			</div>
-		
 		)
 	}
 }
