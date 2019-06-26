@@ -1,6 +1,8 @@
-import React, { Component } from 'react'
-import UserProfile from '../components/UserProfile/Index'
-import './style.css'
+import React, { Component } from 'react';
+import UserProfile from '../components/UserProfile/Index';
+import FindMentor from '../components/FindMentor';
+import Questionnaire from '../components/Questionnaire';
+import './style.css';
 
 class Profile extends Component {
   constructor(props) {
@@ -76,10 +78,14 @@ class Profile extends Component {
 
                 <div className="col-10" id="profile-view">
                   <div id="user-profile">
+
                                 
                     {this.state.isEmptyState && <UserProfile userClick={this.userClick} />}
 
                     {this.state.isAddTripState && <UserProfile />}
+                    
+                    <FindMentor></FindMentor>
+                    <Questionnaire></Questionnaire>
 
                   </div>
                 </div>
