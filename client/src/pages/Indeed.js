@@ -6,10 +6,13 @@ import axios from 'axios'
 class Indeed extends Component {
 
     state = {
-        jobListings: [{ title: "test", summary: "test", url: "test" }]
+        loading: false,
+        jobListings: []
     };
 
-    indeedSearch() {
+    indeedSearch = () => {
+
+        this.setState({ loading: true });
 
         const queryOptions = {
             host: 'www.indeed.com',
@@ -31,25 +34,37 @@ class Indeed extends Component {
         }).then(
             (response) => {
                 console.log(response.data);
-                this.setState({ jobListings: response.data });
+                this.setState({ jobListings: response.data, loading: false });
             }
 
         ).catch(err => console.log(err));
     }
 
-    render() {
-        return (
-            <div className="job-wrapper">
-                <button onClick={this.indeedSearch}>Indeed Search</button>
+    componentDidCatch() {
+        this.indeedSearch();
+    }
 
-                {this.state.jobListings.map(job => (
-                    <JobCard title={job.title}
-                        summary={job.summary}
-                        url={job.url}
-                    />
-                ))}
-            </div>
-        )
+    render() {
+
+        if (this.state.loading) {
+            return (
+                <p>Loading Search Results</p>
+            );
+        } else {
+            return (
+                <div className="job-wrapper">
+                    <button onClick={this.indeedSearch}>Indeed Search</button>
+
+                    {this.state.jobListings.map((job, index) => (
+                        <JobCard key={index}
+                            title={job.title}
+                            summary={job.summary}
+                            url={job.url}
+                        />
+                    ))}
+                </div>
+            )
+        }
     }
 }
 
