@@ -17,7 +17,7 @@ router.get("/", function (req, res) {
     const newObj = JSON.parse(req.query.queryOptions);
     indeed.query(newObj).then(result => {
         res.json(result); // An array of Job objects
-        console.log(result);
+        // console.log(result);
     });
     // console.log(req.query.queryOptions);
     // console.log(req.body);

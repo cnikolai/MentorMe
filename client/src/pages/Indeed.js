@@ -1,9 +1,13 @@
 import React, { Component } from 'react'
-import UserProfile from '../components/UserProfile/Index'
+import JobCard from '../components/JobCard'
 import './style.css'
 import axios from 'axios'
 
 class Indeed extends Component {
+
+    state = {
+        jobListings: [{ title: "test", summary: "test", url: "test" }]
+    };
 
     indeedSearch() {
 
@@ -25,8 +29,9 @@ class Indeed extends Component {
 
             }
         }).then(
-            function (response) {
-                console.log(response);
+            (response) => {
+                console.log(response.data);
+                this.setState({ jobListings: response.data });
             }
 
         ).catch(err => console.log(err));
@@ -34,7 +39,16 @@ class Indeed extends Component {
 
     render() {
         return (
-            <button onClick={this.indeedSearch}>Indeed Search</button>
+            <div className="job-wrapper">
+                <button onClick={this.indeedSearch}>Indeed Search</button>
+
+                {this.state.jobListings.map(job => (
+                    <JobCard title={job.title}
+                        summary={job.summary}
+                        url={job.url}
+                    />
+                ))}
+            </div>
         )
     }
 }
