@@ -4,6 +4,15 @@ html {
     background-color: white;
 }
 
+.errors {
+    display: block;
+}
+
+.noerrors {
+    display: none;
+}
+
+
 .centered {
     position: absolute;
     top: 50%;

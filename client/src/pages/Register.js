@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { Redirect } from 'react-router-dom'
+import './style.css'
 import axios from 'axios'
 
 class Register extends Component {
@@ -21,8 +22,14 @@ class Register extends Component {
 	}
 	handleSubmit(event) {
 		console.log('sign-up handleSubmit, username: ')
-		console.log(this.state.username)
-		event.preventDefault()
+		console.log(this.state.username);
+		event.preventDefault();
+		var mentee = document.getElementById("mentormenteeselect");
+		var isAMentee = mentee.options[mentee.selectedIndex].value;
+		this.setState({ //redirect to login page
+			isMentee: isAMentee
+		});
+		console.log("mentee?: ", this.state.isMentee);
 
 		//request to server to add a new username/password
 		axios.post('/users/register', {
@@ -38,8 +45,14 @@ class Register extends Component {
 						redirectTo: '/login'
 					});
 				} else {
+					console.log("response: ", response.data.register.errors[0].msg);
 					//TODO: put a warning at the top of the page
-					console.log('username already taken');
+					//console.log('username already taken');
+					var errors = document.getElementById("errors");
+					errors.innerText = response.data.register.errors[0].msg;
+					console.log("errors", errors);
+					errors.classList.toggle("alert");
+					errors.classList.toggle("alert-danger");
 				}
 			}).catch(error => {
 				console.log('signup error: ');
@@ -53,6 +66,9 @@ class Register extends Component {
         } else {
 		return (
 			<div className="container">
+				<br></br>
+				<br></br>
+				<div id="errors"></div>
 				<div className="row mt-5">
 					<div className="col-5"></div>
 					<div className="SignupForm col-7">
@@ -113,10 +129,12 @@ class Register extends Component {
 									<a className="dropdown-item" href="#">Mentor</a>
 									<a className="dropdown-item" href="#">Mentee</a>
 								</div> */}
-								<select className="dropdown-menu">
-									<option value="false">Mentor</option>
+								<select id="mentormenteeselect">
 									<option value="true">Mentee</option>
+									<option value="false">Mentor</option>
 								</select> 
+								<br></br>
+								<br></br>
 							{/* </div> */}
 							<div className="form-group ">
 								<div className="col-7"></div>
