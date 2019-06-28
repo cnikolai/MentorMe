@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import UserProfile from '../components/UserProfile/Index';
-import FindMentor from '../components/FindMentor';
+import FindMentor from '../components/FindMentor/index';
 import Questionnaire from '../components/Questionnaire';
 import './style.css';
 
@@ -13,14 +13,19 @@ class Profile extends Component {
     userClick = () => {
       this.setState({
         ...this.state,
-        isEmptyState: true,
+        isEmptyState: false,
         userClick: false
       })
       console.log('The user was clicked.');
 
     }
 
-    fMentorClick() {
+    fMentorClick = () => {
+      this.setState({
+        ...this.state,
+        isEmptyState: false,
+        fMentorClick: false
+      })
       console.log('fMentor was clicked.');
       
     }
@@ -78,13 +83,16 @@ class Profile extends Component {
 
                 <div className="col-10" id="profile-view">
                   <div id="user-profile">
+                    <div>
+                      {this.state.isEmptyState && <UserProfile userClick={this.userClick} />}
 
-                                
-                    {this.state.isEmptyState && <UserProfile userClick={this.userClick} />}
+                      {this.state.isAddTripState && <UserProfile />}
+                    </div>
+                    <div>
+                      {this.state.isEmptyState && <FindMentor fMentorClick={this.fMentorClick} />}
 
-                    {this.state.isAddTripState && <UserProfile />}
-                    
-                    <FindMentor></FindMentor>
+                      {this.state.isAddTripState && <FindMentor />}
+                    </div>
                     <Questionnaire></Questionnaire>
 
                   </div>
