@@ -7,40 +7,89 @@ import './style.css';
 class Profile extends Component {
   constructor(props) {
     super(props)
-    this.state = { isEmptyState: true }
+    this.state = { isEmptyState: true, fMentorClick: false, userClick: false, mentorClick: false, chatClick: false, logoutClick: false, questionClick: false }
   }
 
     userClick = () => {
       this.setState({
-        ...this.state,
         isEmptyState: false,
-        userClick: false
+        userClick: true,
+        fMentorClick: false,
+        mentorClick: false,
+        chatClick: false,
+        logoutClick: false,
+        questionClick: false
       })
       console.log('The user was clicked.');
 
     }
 
+    questionClick = () => {
+      this.setState({
+        isEmptyState: false,
+        userClick: false,
+        fMentorClick: false,
+        mentorClick: false,
+        chatClick: false,
+        logoutClick: false,
+        questionClick: true
+      })
+      console.log('The question was clicked.');
+
+    }
+
     fMentorClick = () => {
       this.setState({
-        ...this.state,
         isEmptyState: false,
-        fMentorClick: false
+        userClick: false,
+        fMentorClick: true,
+        mentorClick: false,
+        chatClick: false,
+        logoutClick: false,
+        questionClick: false
       })
       console.log('fMentor was clicked.');
       
     }
 
     mentorClick() {
+      this.setState({
+        isEmptyState: false,
+        userClick: false,
+        fMentorClick: false,
+        mentorClick: true,
+        chatClick: false,
+        logoutClick: false,
+        questionClick: false
+      })
       console.log('The Mentor was clicked.');
       
     }
 
     chatClick() {
+      this.setState({
+        isEmptyState: false,
+        userClick: false,
+        fMentorClick: false,
+        mentorClick: false,
+        chatClick: true,
+        logoutClick: false,
+        questionClick: false
+      })
       console.log('The chat was clicked.');
       
     }
 
     logoutClick() {
+      this.setState({
+        isEmptyState: false,
+        userClick: false,
+        fMentorClick: false,
+        mentorClick: false,
+        chatClick: false,
+        logoutClick: true,
+        questionClick: false
+      })
       console.log('Log out was clicked.');
       
     }
@@ -84,16 +133,18 @@ class Profile extends Component {
                 <div className="col-10" id="profile-view">
                   <div id="user-profile">
                     <div>
-                      {this.state.isEmptyState && <UserProfile userClick={this.userClick} />}
-
-                      {this.state.isAddTripState && <UserProfile />}
+                      {(this.state.isEmptyState || this.state.userClick) && <UserProfile userClick={this.userClick} />}                                     
                     </div>
+
                     <div>
-                      {this.state.isEmptyState && <FindMentor fMentorClick={this.fMentorClick} />}
+                      {(this.state.isEmptyState || this.state.fMentorClick) && <FindMentor fMentorClick={this.fMentorClick} />}
 
-                      {this.state.isAddTripState && <FindMentor />}
                     </div>
-                    <Questionnaire></Questionnaire>
+                    
+                    <div>
+                      {(this.state.isEmptyState || this.state.questionClick) && <Questionnaire questionClick={this.questionClick} />}
+                    </div>
+                    
 
                   </div>
                 </div>

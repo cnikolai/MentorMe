@@ -5,6 +5,7 @@ import { Route, Link } from 'react-router-dom'
 //import '../App.css';
 import axios from 'axios'
 import "./style.css";
+import Profile from '../../pages/Profile';
 
 class UserProfile extends Component {
     constructor() {
@@ -27,9 +28,9 @@ class UserProfile extends Component {
                     </div>
                 </div>
                 <div className="row quest">
-                    <div className='col' id='questions'>
+                    <button className='col' id='questions' onClick={this.questionClick}>
                         questions here
-                    </div>
+                    </button>
                 </div>
             </div>
         );
