@@ -16,10 +16,11 @@ router.get('/register', forwardAuthenticated, (req, res) => res.send('register')
 // Register
 router.post('/register', (req, res) => {
   console.log("inside post register", req.body);
-  const { username, password } = req.body;
+  const { username, password, email, isMentee } = req.body;
+  console.log("isMentee: ", isMentee);
   let errors = [];
 
-  if (!username || !password) {
+  if (!username || !password || !email || !isMentee) {
     errors.push({ msg: 'Please enter all fields' });
   }
 
@@ -28,11 +29,11 @@ router.post('/register', (req, res) => {
   // }
 
   if (password.length < 3) {
-    errors.push({ msg: 'Password must be at least 6 characters' });
+    errors.push({ msg: 'Password must be at least 3 characters' });
   }
 
   if (errors.length > 0) {
-    res.json({'register': {
+      res.json({'register': {
       errors,
       username,
       password
@@ -48,7 +49,9 @@ router.post('/register', (req, res) => {
         }});
       } else {
         const newUser = new db.User({
-          username
+          username,
+          email,
+          isMentee
         });
         newUser.setPassword(req.body.password);
         console.log("newUser: ",newUser);
