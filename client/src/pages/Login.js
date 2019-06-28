@@ -92,7 +92,6 @@ class Login extends Component {
                             <div className="col-7"></div>
                             <button
                                 className="btn btn-primary col-1 col-mr-auto"
-
                                 onClick={this.handleSubmit}
                                 type="submit">Login</button>
                         </div>

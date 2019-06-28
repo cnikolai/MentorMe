@@ -7,9 +7,6 @@ class Home extends Component {
     }
 
     render() {
-        const imageStyle = {
-            width: 400
-        }
         return (
             <div id="carouselExampleInterval" className="carousel slide container-fluid" data-ride="carousel">
                     <img src={require("../images/home.jpg")} className="d-block w-100 home-image" alt="..." />

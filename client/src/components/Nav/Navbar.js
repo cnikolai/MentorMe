@@ -45,30 +45,27 @@ class Navbar extends Component {
                 <div className="collapse navbar-collapse nav justify-content-end" id="navbarNav">
                     
                     {loggedIn ? (
-                        <section className="navbar-nav">
-
+                        <section className="navbar-section">
+                        <Link to="/" className="btn btn-link text-secondary">
+                                <span id="home" className="text-secondary">Home</span>
+                        </Link>
+                        <Link to="" className="btn btn-link text-secondary">
+                                <span id="about" className="nav-link" href="#">About</span>
+                        </Link>
+                        <Link to="/profile" className="btn btn-link text-secondary">
+                                <span id="profile" className="text-secondary">Profile</span>
+                        </Link>
+                        <Link to="" className="btn btn-link text-secondary">
+                                <span id="connect" className="nav-link" href="#">Connect</span>
+                        </Link>
                         <Link to="#" className="btn btn-link text-secondary" onClick={this.logout}>
                             <span className="text-secondary">logout</span>
                         </Link>
-
                         </section>
 
                         ) : (
 
                         <section className="navbar-section">
-
-                            <Link to="/" className="btn btn-link text-secondary">
-                                <span id="home" className="text-secondary">Home</span>
-                            </Link>
-                            <Link to="" className="btn btn-link text-secondary">
-                                <span id="about" className="nav-link" href="#">About</span>
-                            </Link>
-                            <Link to="/profile" className="btn btn-link text-secondary">
-                                <span id="profile" className="text-secondary">Profile</span>
-                            </Link>
-                            <Link to="" className="btn btn-link text-secondary">
-                                <span id="connect" className="nav-link" href="#">Connect</span>
-                            </Link>
                             <Link to="/login" className="btn btn-link text-secondary">
                                 <span id="login" className="text-secondary">Login</span>
                             </Link>
