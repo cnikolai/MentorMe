@@ -7,6 +7,7 @@ import Login from './pages/Login'
 import Navbar from './components/Nav/Navbar'
 import Home from './pages/Home'
 import Profile from './pages/Profile'
+import Indeed from './pages/Indeed'
 import API from './utils/API';
 
 class App extends Component {
@@ -26,7 +27,7 @@ class App extends Component {
     this.getUser()
   }
 
-  updateUser (userObject) {
+  updateUser(userObject) {
     this.setState(userObject)
   }
 
@@ -68,6 +69,9 @@ class App extends Component {
           exact path="/profile"
           component={Profile} />
         <Route
+          exact path="/indeed"
+          component={Indeed} />
+        <Route
           path="/login"
           render={() =>
             <Login
@@ -77,7 +81,7 @@ class App extends Component {
         <Route
           path="/signup"
           render={() =>
-            <Register/>}
+            <Register />}
         />
       </div>
     );
