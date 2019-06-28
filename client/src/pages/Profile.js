@@ -102,13 +102,13 @@ class Profile extends Component {
 
                 <div className="col-2 user-info">
                   
-                  <div className="user-options" id="username" onClick={this.userClick}>
+                  <div className="user-options" id="username" name="userClick" onClick={this.userClick}>
                     UserName
                   
                   </div>
                   
 
-                  <div className="user-options" id='fMentor' onClick={this.fMentorClick}>
+                  <div className="user-options" id='fMentor' name="fMentorClick" onClick={this.fMentorClick}>
                     Find Mentors
 
                   </div>
@@ -132,6 +132,7 @@ class Profile extends Component {
 
                 <div className="col-10" id="profile-view">
                   <div id="user-profile">
+
                     <div>
                       {(this.state.isEmptyState || this.state.userClick) && <UserProfile userClick={this.userClick} />}                                     
                     </div>
