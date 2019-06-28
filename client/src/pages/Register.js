@@ -9,8 +9,8 @@ class Register extends Component {
 		this.state = {
 			username: '',
 			password: '',
-			confirmPassword: '',
-			email: ''
+			email: '',
+			isMentee: true
 		}
 		this.handleSubmit = this.handleSubmit.bind(this)
 		this.handleChange = this.handleChange.bind(this)
@@ -35,7 +35,8 @@ class Register extends Component {
 		axios.post('/users/register', {
 			username: this.state.username,
 			password: this.state.password,
-			email: this.state.email
+			email: this.state.email,
+			isMentee: this.state.isMentee
 		})
 			.then(response => {
 				if (response.data.ok) {
