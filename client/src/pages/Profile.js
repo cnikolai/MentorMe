@@ -1,41 +1,95 @@
 import React, { Component } from 'react';
 import UserProfile from '../components/UserProfile/Index';
-import FindMentor from '../components/FindMentor';
+import FindMentor from '../components/FindMentor/index';
 import Questionnaire from '../components/Questionnaire';
 import './style.css';
 
 class Profile extends Component {
   constructor(props) {
     super(props)
-    this.state = { isEmptyState: true }
+    this.state = { isEmptyState: true, fMentorClick: false, userClick: false, mentorClick: false, chatClick: false, logoutClick: false, questionClick: false }
   }
 
     userClick = () => {
       this.setState({
-        ...this.state,
-        isEmptyState: true,
-        userClick: false
+        isEmptyState: false,
+        userClick: true,
+        fMentorClick: false,
+        mentorClick: false,
+        chatClick: false,
+        logoutClick: false,
+        questionClick: false
       })
       console.log('The user was clicked.');
 
     }
 
-    fMentorClick() {
+    questionClick = () => {
+      this.setState({
+        isEmptyState: false,
+        userClick: false,
+        fMentorClick: false,
+        mentorClick: false,
+        chatClick: false,
+        logoutClick: false,
+        questionClick: true
+      })
+      console.log('The question was clicked.');
+
+    }
+
+    fMentorClick = () => {
+      this.setState({
+        isEmptyState: false,
+        userClick: false,
+        fMentorClick: true,
+        mentorClick: false,
+        chatClick: false,
+        logoutClick: false,
+        questionClick: false
+      })
       console.log('fMentor was clicked.');
       
     }
 
     mentorClick() {
+      this.setState({
+        isEmptyState: false,
+        userClick: false,
+        fMentorClick: false,
+        mentorClick: true,
+        chatClick: false,
+        logoutClick: false,
+        questionClick: false
+      })
       console.log('The Mentor was clicked.');
       
     }
 
     chatClick() {
+      this.setState({
+        isEmptyState: false,
+        userClick: false,
+        fMentorClick: false,
+        mentorClick: false,
+        chatClick: true,
+        logoutClick: false,
+        questionClick: false
+      })
       console.log('The chat was clicked.');
       
     }
 
     logoutClick() {
+      this.setState({
+        isEmptyState: false,
+        userClick: false,
+        fMentorClick: false,
+        mentorClick: false,
+        chatClick: false,
+        logoutClick: true,
+        questionClick: false
+      })
       console.log('Log out was clicked.');
       
     }
@@ -48,13 +102,13 @@ class Profile extends Component {
 
                 <div className="col-2 user-info">
                   
-                  <div className="user-options" id="username" onClick={this.userClick}>
+                  <div className="user-options" id="username" name="userClick" onClick={this.userClick}>
                     UserName
                   
                   </div>
                   
 
-                  <div className="user-options" id='fMentor' onClick={this.fMentorClick}>
+                  <div className="user-options" id='fMentor' name="fMentorClick" onClick={this.fMentorClick}>
                     Find Mentors
 
                   </div>
@@ -79,11 +133,20 @@ class Profile extends Component {
                 <div className="col-10" id="profile-view">
                   <div id="user-profile">
 
-                                
-                    {this.state.isEmptyState && <UserProfile userClick={this.userClick} />}
+                    <div>
+                      {(this.state.isEmptyState || this.state.userClick) && <UserProfile userClick={this.userClick} />}                                     
+                    </div>
 
-                    {this.state.isAddTripState && <UserProfile />}
+                    <div>
+                      {(this.state.isEmptyState || this.state.fMentorClick) && <FindMentor fMentorClick={this.fMentorClick} />}
+
+                    </div>
                     
+                    <div>
+                      {(this.state.isEmptyState || this.state.questionClick) && <Questionnaire questionClick={this.questionClick} />}
+                    </div>
+                    
+
                     <FindMentor 
                       src={"https://images.pexels.com/photos/1716861/pexels-photo-1716861.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940"}
                       mentorname={"Pika Chu"}

@@ -51,8 +51,11 @@ class Register extends Component {
 					var errors = document.getElementById("errors");
 					errors.innerText = response.data.register.errors[0].msg;
 					console.log("errors", errors);
-					errors.classList.toggle("alert");
-					errors.classList.toggle("alert-danger");
+					//errors.classList.remove("alert alert-danger");
+					errors.classList.add("alert");
+					errors.classList.add("alert-danger");
+					// errors.classList.toggle("alert");
+					// errors.classList.toggle("alert-danger");
 				}
 			}).catch(error => {
 				console.log('signup error: ');
