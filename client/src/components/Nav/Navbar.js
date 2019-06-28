@@ -59,7 +59,7 @@ class Navbar extends Component {
                                 <span id="connect" className="nav-link" href="#">Connect</span>
                         </Link>
                         <Link to="#" className="btn btn-link text-secondary" onClick={this.logout}>
-                            <span className="text-secondary">logout</span>
+                            <span id="logout" className="text-secondary">logout</span>
                         </Link>
                         </section>
 

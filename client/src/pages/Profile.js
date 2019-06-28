@@ -102,8 +102,9 @@ class Profile extends Component {
 
                 <div className="col-2 user-info">
                   
-                  <div className="user-options" id="username" name="userClick" onClick={this.userClick}>
-                    UserName
+
+                  <div className="user-options" id="username" onClick={this.userClick}>
+                    {this.props.user}
                   
                   </div>
                   
