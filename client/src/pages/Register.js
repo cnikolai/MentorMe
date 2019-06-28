@@ -46,16 +46,12 @@ class Register extends Component {
 					});
 				} else {
 					console.log("response: ", response.data.register.errors[0].msg);
-					//TODO: put a warning at the top of the page
-					//console.log('username already taken');
 					var errors = document.getElementById("errors");
 					errors.innerText = response.data.register.errors[0].msg;
 					console.log("errors", errors);
 					//errors.classList.remove("alert alert-danger");
 					errors.classList.add("alert");
 					errors.classList.add("alert-danger");
-					// errors.classList.toggle("alert");
-					// errors.classList.toggle("alert-danger");
 				}
 			}).catch(error => {
 				console.log('signup error: ');

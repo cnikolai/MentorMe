@@ -7,7 +7,10 @@ import './style.css';
 class Profile extends Component {
   constructor(props) {
     super(props)
-    this.state = { isEmptyState: true }
+    this.state = { 
+      username: this.props.user,
+      isEmptyState: true 
+    }
   }
 
     userClick = () => {
@@ -49,7 +52,7 @@ class Profile extends Component {
                 <div className="col-2 user-info">
                   
                   <div className="user-options" id="username" onClick={this.userClick}>
-                    UserName
+                    {this.props.user}
                   
                   </div>
                   
