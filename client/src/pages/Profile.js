@@ -3,6 +3,7 @@ import UserProfile from '../components/UserProfile/Index';
 import FindMentor from '../components/FindMentor/index';
 import Questionnaire from '../components/Questionnaire';
 import Indeed from './Indeed';
+import Matches from '../components/Matches/index';
 import './style.css';
 
 class Profile extends Component {
@@ -61,7 +62,7 @@ class Profile extends Component {
       
     }
 
-    mentorClick() {
+    mentorClick = () => {
       this.setState({
         userClick: false,
         fMentorClick: false,
@@ -75,7 +76,7 @@ class Profile extends Component {
       
     }
 
-    chatClick() {
+    chatClick = () => {
       this.setState({
         userClick: false,
         fMentorClick: false,
@@ -89,7 +90,7 @@ class Profile extends Component {
       
     }
 
-    indeedClick() {
+    indeedClick = () => {
       this.setState({
         isEmptyState: false,
         userClick: false,
@@ -104,7 +105,7 @@ class Profile extends Component {
       
     }
 
-    logoutClick() {
+    logoutClick = () => {
       this.setState({
         userClick: false,
         fMentorClick: false,
@@ -177,11 +178,18 @@ class Profile extends Component {
                             description={"Profession: Detective. Avid pursuer of clues and interested in broadening horizons."} 
                           />
                       }
-
                     </div>
                     
                     <div>
                       {(this.state.isEmptyState || this.state.questionClick) && <Questionnaire questionClick={this.questionClick} />}
+                    </div>
+
+                    <div>
+                      {(this.state.isEmptyState || this.state.mentorClick) && <Matches mentorClick={this.mentorClick} />}
+                    </div>
+
+                    <div>
+                      {(this.state.isEmptyState || this.state.indeedClick) && <Indeed indeedClick={this.indeedClick} />}
                     </div>
                     
                   </div>
