@@ -1,15 +1,15 @@
 import React, { Component } from 'react'
-import { Redirect } from 'react-router-dom'
-import { Route, Link } from 'react-router-dom'
+//import { Redirect } from 'react-router-dom'
+//import { Route, Link } from 'react-router-dom'
 //import logo from '../logo.svg';
 //import '../App.css';
-import axios from 'axios'
+//import axios from 'axios'
 import "./style.css";
 
 class UserProfile extends Component {
-    constructor() {
-        super()
-    }
+    // constructor() {
+    //     super()
+    // }
 
     render() {
         return (

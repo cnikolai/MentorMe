@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios'
-import { Route, Link } from 'react-router-dom'
+import { Route } from 'react-router-dom'
 // components
 import Register from './pages/Register'
 import Login from './pages/Login'
@@ -8,7 +8,7 @@ import Navbar from './components/Nav/Navbar'
 import Home from './pages/Home'
 import Profile from './pages/Profile'
 import Indeed from './pages/Indeed'
-import API from './utils/API';
+//import API from './utils/API';
 
 class App extends Component {
   constructor() {

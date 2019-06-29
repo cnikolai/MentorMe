@@ -1,12 +1,9 @@
 import React, { Component } from 'react';
-import { Redirect } from 'react-router-dom';
-import { Route, Link } from 'react-router-dom';
+//import { Redirect } from 'react-router-dom';
+//import { Route, Link } from 'react-router-dom';
 import "./style.css";
 
 class FindMentor extends Component {
-    constructor() {
-        super()
-    }
 
     render() {
         return (
