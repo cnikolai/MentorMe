@@ -2,12 +2,13 @@ import React, { Component } from 'react';
 import UserProfile from '../components/UserProfile/Index';
 import FindMentor from '../components/FindMentor/index';
 import Questionnaire from '../components/Questionnaire';
+import Indeed from './Indeed';
 import './style.css';
 
 class Profile extends Component {
   constructor(props) {
     super(props)
-    this.state = { isEmptyState: true, fMentorClick: false, userClick: false, mentorClick: false, chatClick: false, logoutClick: false, questionClick: false }
+    this.state = { isEmptyState: true, fMentorClick: false, userClick: false, mentorClick: false, chatClick: false, indeedClick: false, logoutClick: false, questionClick: false }
   }
 
     userClick = () => {
@@ -17,6 +18,7 @@ class Profile extends Component {
         fMentorClick: false,
         mentorClick: false,
         chatClick: false,
+        indeedClick: false,
         logoutClick: false,
         questionClick: false
       })
@@ -31,6 +33,7 @@ class Profile extends Component {
         fMentorClick: false,
         mentorClick: false,
         chatClick: false,
+        indeedClick: false,
         logoutClick: false,
         questionClick: true
       })
@@ -45,6 +48,7 @@ class Profile extends Component {
         fMentorClick: true,
         mentorClick: false,
         chatClick: false,
+        indeedClick: false,
         logoutClick: false,
         questionClick: false
       })
@@ -59,6 +63,7 @@ class Profile extends Component {
         fMentorClick: false,
         mentorClick: true,
         chatClick: false,
+        indeedClick: false,
         logoutClick: false,
         questionClick: false
       })
@@ -73,10 +78,26 @@ class Profile extends Component {
         fMentorClick: false,
         mentorClick: false,
         chatClick: true,
+        indeedClick: false,
         logoutClick: false,
         questionClick: false
       })
       console.log('The chat was clicked.');
+      
+    }
+
+    indeedClick() {
+      this.setState({
+        isEmptyState: false,
+        userClick: false,
+        fMentorClick: false,
+        mentorClick: false,
+        chatClick: false,
+        indeedClick: true,
+        logoutClick: false,
+        questionClick: false
+      })
+      console.log('Indeed was clicked.');
       
     }
 
@@ -87,6 +108,7 @@ class Profile extends Component {
         fMentorClick: false,
         mentorClick: false,
         chatClick: false,
+        indeedClick: false,
         logoutClick: true,
         questionClick: false
       })
@@ -124,6 +146,11 @@ class Profile extends Component {
                   
                   </div>
 
+                  <div className="user-options" id='indeed' onClick={this.indeedClick}>
+                    Job Search
+                  
+                  </div>
+
                   <div className="user-options" id='logout' onClick={this.logoutClick}>
                     Log Out
                   
@@ -139,7 +166,13 @@ class Profile extends Component {
                     </div>
 
                     <div>
-                      {(this.state.isEmptyState || this.state.fMentorClick) && <FindMentor fMentorClick={this.fMentorClick} />}
+                      {(this.state.isEmptyState || this.state.fMentorClick) && <FindMentor 
+                            fMentorClick={this.fMentorClick}
+                            src={"https://images.pexels.com/photos/1716861/pexels-photo-1716861.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940"}
+                            mentorname={"Pika Chu"}
+                            description={"Profession: Detective. Avid pursuer of clues and interested in broadening horizons."} 
+                          />
+                      }
 
                     </div>
                     
@@ -147,13 +180,6 @@ class Profile extends Component {
                       {(this.state.isEmptyState || this.state.questionClick) && <Questionnaire questionClick={this.questionClick} />}
                     </div>
                     
-
-                    <FindMentor 
-                      src={"https://images.pexels.com/photos/1716861/pexels-photo-1716861.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940"}
-                      mentorname={"Pika Chu"}
-                      description={"Profession: Detective. Avid pursuer of clues and interested in broadening horizons."} />
-                    <Questionnaire></Questionnaire>
-
                   </div>
                 </div>
 
@@ -163,4 +189,4 @@ class Profile extends Component {
     }
 }
 
-export default Profile
+export default Profile;
