@@ -1,10 +1,4 @@
-<<<<<<< HEAD
 import React, { Component } from 'react';
-=======
-import React from 'react';
-//import { Redirect } from 'react-router-dom';
-//import { Route, Link } from 'react-router-dom';
->>>>>>> master
 import "./style.css";
 import RadioButton from "../RadioButton"
 
@@ -28,7 +22,16 @@ class Questionnaire extends Component {
     }
 
     handleSubmit = () => {
-        console.log("Hi");
+        console.log("q1: " + this.state.q1);
+        console.log("q2: " + this.state.q2);
+        console.log("q3: " + this.state.q3);
+        console.log("q4: " + this.state.q4);
+        console.log("q5: " + this.state.q5);
+    }
+
+    handleSelect = event => {
+        const { name, value } = event.target;
+        this.setState({ [name]: value });
     }
 
     render() {
@@ -41,6 +44,7 @@ class Questionnaire extends Component {
                 <form id="q1">
                     {this.state.buttonArray.map(item => (
                         <RadioButton key={item.value}
+                            selected={this.handleSelect}
                             value={item.value}
                             name="q1"
                             buttonName={item.buttonName} />
@@ -51,6 +55,7 @@ class Questionnaire extends Component {
                 <form id="q2">
                     {this.state.buttonArray.map(item => (
                         <RadioButton key={parseInt(item.value) + 6}
+                            selected={this.handleSelect}
                             value={item.value}
                             name="q2"
                             buttonName={item.buttonName} />
@@ -61,6 +66,7 @@ class Questionnaire extends Component {
                 <form id="q3">
                     {this.state.buttonArray.map(item => (
                         <RadioButton key={parseInt(item.value) + 12}
+                            selected={this.handleSelect}
                             value={item.value}
                             name="q3"
                             buttonName={item.buttonName} />
@@ -71,6 +77,7 @@ class Questionnaire extends Component {
                 <form id="q4">
                     {this.state.buttonArray.map(item => (
                         <RadioButton key={parseInt(item.value) + 18}
+                            selected={this.handleSelect}
                             value={item.value}
                             name="q4"
                             buttonName={item.buttonName} />
@@ -81,6 +88,7 @@ class Questionnaire extends Component {
                 <form id="q5">
                     {this.state.buttonArray.map(item => (
                         <RadioButton key={parseInt(item.value) + 24}
+                            selected={this.handleSelect}
                             value={item.value}
                             name="q5"
                             buttonName={item.buttonName} />
