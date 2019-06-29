@@ -1,62 +1,104 @@
-import React from 'react';
-//import { Redirect } from 'react-router-dom';
-//import { Route, Link } from 'react-router-dom';
+import React, { Component } from 'react';
 import "./style.css";
+import RadioButton from "../RadioButton"
 
-function Questionnaire() {
-    return (
-        <div id="container">
 
-            <h1>Questionnaire</h1>
 
-            <p>1. I am interested in meeting up at least once a week.</p>
-            <form>
-            <input className="radiobtn" type="radio" name="meetoften" value="1" /> 1
-            <input className="radiobtn" type="radio" name="meetoften" value="2" /> 2
-            <input className="radiobtn" type="radio" name="meetoften" value="3" /> 3
-            <input className="radiobtn" type="radio" name="meetoften" value="4" /> 4
-            <input className="radiobtn" type="radio" name="meetoften" value="5" /> 5
-            </form>
+class Questionnaire extends Component {
 
-            <p>2. I want to meet in-person.</p>
-            <form>
-            <input className="radiobtn" type="radio" name="meetoften" value="1" /> 1
-            <input className="radiobtn" type="radio" name="meetoften" value="2" /> 2
-            <input className="radiobtn" type="radio" name="meetoften" value="3" /> 3
-            <input className="radiobtn" type="radio" name="meetoften" value="4" /> 4
-            <input className="radiobtn" type="radio" name="meetoften" value="5" /> 5
-            </form>
+    state = {
+        buttonArray: [
+            { value: "1", buttonName: "1" },
+            { value: "2", buttonName: "2" },
+            { value: "3", buttonName: "3" },
+            { value: "4", buttonName: "4" },
+            { value: "5", buttonName: "5" }
+        ],
+        q1: "",
+        q2: "",
+        q3: "",
+        q4: "",
+        q5: ""
+    }
 
-            <p>3. This industry is a hobby for me as opposed to my profession.</p>
-            <form>
-            <input className="radiobtn" type="radio" name="meetoften" value="1" /> 1
-            <input className="radiobtn" type="radio" name="meetoften" value="2" /> 2
-            <input className="radiobtn" type="radio" name="meetoften" value="3" /> 3
-            <input className="radiobtn" type="radio" name="meetoften" value="4" /> 4
-            <input className="radiobtn" type="radio" name="meetoften" value="5" /> 5
-            </form>
+    handleSubmit = () => {
+        console.log("q1: " + this.state.q1);
+        console.log("q2: " + this.state.q2);
+        console.log("q3: " + this.state.q3);
+        console.log("q4: " + this.state.q4);
+        console.log("q5: " + this.state.q5);
+    }
 
-            <p>4. I am a beginner in this industry and am hoping to advance my skills quickly.</p>
-            <form>
-            <input className="radiobtn" type="radio" name="meetoften" value="1" /> 1
-            <input className="radiobtn" type="radio" name="meetoften" value="2" /> 2
-            <input className="radiobtn" type="radio" name="meetoften" value="3" /> 3
-            <input className="radiobtn" type="radio" name="meetoften" value="4" /> 4
-            <input className="radiobtn" type="radio" name="meetoften" value="5" /> 5
-            </form>
+    handleSelect = event => {
+        const { name, value } = event.target;
+        this.setState({ [name]: value });
+    }
 
-            <p>5. I would like structured mentor meetings with a schedule or agenda.</p>
-            <form>
-            <input className="radiobtn" type="radio" name="meetoften" value="1" /> 1
-            <input className="radiobtn" type="radio" name="meetoften" value="2" /> 2
-            <input className="radiobtn" type="radio" name="meetoften" value="3" /> 3
-            <input className="radiobtn" type="radio" name="meetoften" value="4" /> 4
-            <input className="radiobtn" type="radio" name="meetoften" value="5" /> 5
-            </form>
+    render() {
+        return (
+            <div id="container">
 
-            <button id="done" type="submit" value="text">Done</button>
-        </div>
-    );
+                <h1>Questionnaire</h1>
+
+                <p>1. I am interested in meeting up at least once a week.</p>
+                <form id="q1">
+                    {this.state.buttonArray.map(item => (
+                        <RadioButton key={item.value}
+                            selected={this.handleSelect}
+                            value={item.value}
+                            name="q1"
+                            buttonName={item.buttonName} />
+                    ))}
+                </form>
+
+                <p>2. I want to meet in-person.</p>
+                <form id="q2">
+                    {this.state.buttonArray.map(item => (
+                        <RadioButton key={parseInt(item.value) + 6}
+                            selected={this.handleSelect}
+                            value={item.value}
+                            name="q2"
+                            buttonName={item.buttonName} />
+                    ))}
+                </form>
+
+                <p>3. This industry is a hobby for me as opposed to my profession.</p>
+                <form id="q3">
+                    {this.state.buttonArray.map(item => (
+                        <RadioButton key={parseInt(item.value) + 12}
+                            selected={this.handleSelect}
+                            value={item.value}
+                            name="q3"
+                            buttonName={item.buttonName} />
+                    ))}
+                </form>
+
+                <p>4. I am a beginner in this industry and am hoping to advance my skills quickly.</p>
+                <form id="q4">
+                    {this.state.buttonArray.map(item => (
+                        <RadioButton key={parseInt(item.value) + 18}
+                            selected={this.handleSelect}
+                            value={item.value}
+                            name="q4"
+                            buttonName={item.buttonName} />
+                    ))}
+                </form>
+
+                <p>5. I would like structured mentor meetings with a schedule or agenda.</p>
+                <form id="q5">
+                    {this.state.buttonArray.map(item => (
+                        <RadioButton key={parseInt(item.value) + 24}
+                            selected={this.handleSelect}
+                            value={item.value}
+                            name="q5"
+                            buttonName={item.buttonName} />
+                    ))}
+                </form>
+
+                <button id="done" type="submit" value="text" onClick={this.handleSubmit}>Done</button>
+            </div>
+        );
+    };
 }
 
 export default Questionnaire;
