@@ -7,12 +7,19 @@ import './style.css';
 class Profile extends Component {
   constructor(props) {
     super(props)
-    this.state = { isEmptyState: true, fMentorClick: false, userClick: false, mentorClick: false, chatClick: false, logoutClick: false, questionClick: false }
+    this.state = { fMentorClick: false, userClick: true, mentorClick: false, chatClick: false, logoutClick: false, questionClick: false }
   }
+
+  // handleClick = () => {
+  //   this.setState({
+      
+  //   })
+  //   console.log('btn was clicked.');
+
+  // }
 
     userClick = () => {
       this.setState({
-        isEmptyState: false,
         userClick: true,
         fMentorClick: false,
         mentorClick: false,
@@ -26,7 +33,6 @@ class Profile extends Component {
 
     questionClick = () => {
       this.setState({
-        isEmptyState: false,
         userClick: false,
         fMentorClick: false,
         mentorClick: false,
@@ -40,7 +46,6 @@ class Profile extends Component {
 
     fMentorClick = () => {
       this.setState({
-        isEmptyState: false,
         userClick: false,
         fMentorClick: true,
         mentorClick: false,
@@ -54,7 +59,6 @@ class Profile extends Component {
 
     mentorClick() {
       this.setState({
-        isEmptyState: false,
         userClick: false,
         fMentorClick: false,
         mentorClick: true,
@@ -68,7 +72,6 @@ class Profile extends Component {
 
     chatClick() {
       this.setState({
-        isEmptyState: false,
         userClick: false,
         fMentorClick: false,
         mentorClick: false,
@@ -82,7 +85,6 @@ class Profile extends Component {
 
     logoutClick() {
       this.setState({
-        isEmptyState: false,
         userClick: false,
         fMentorClick: false,
         mentorClick: false,
@@ -109,7 +111,7 @@ class Profile extends Component {
                   
 
                   <div className="user-options" id='fMentor' name="fMentorClick" onClick={this.fMentorClick}>
-                    Find Mentors
+                    Connect
 
                   </div>
 
@@ -132,6 +134,8 @@ class Profile extends Component {
 
                 <div className="col-10" id="profile-view">
                   <div id="user-profile">
+
+                    
 
                     <div>
                       {(this.state.isEmptyState || this.state.userClick) && <UserProfile userClick={this.userClick} />}                                     
