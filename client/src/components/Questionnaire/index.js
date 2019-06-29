@@ -1,4 +1,10 @@
+<<<<<<< HEAD
 import React, { Component } from 'react';
+=======
+import React from 'react';
+//import { Redirect } from 'react-router-dom';
+//import { Route, Link } from 'react-router-dom';
+>>>>>>> master
 import "./style.css";
 import RadioButton from "../RadioButton"
 
