@@ -1,8 +1,5 @@
 import React, { Component } from 'react'
-import { Redirect } from 'react-router-dom'
-//import { Route } from 'react-router-dom'
 import { Link } from 'react-router-dom'
-//import '../App.css';
 import axios from 'axios'
 import "./style.css";
 
@@ -49,17 +46,8 @@ class Navbar extends Component {
                     
                     {loggedIn ? (
                         <section className="navbar-section">
-                        <Link to="/" className="btn btn-link text-secondary">
-                                <span id="home" className="text-secondary">Home</span>
-                        </Link>
-                        <Link to="" className="btn btn-link text-secondary">
-                                <span id="about" className="nav-link" href="#">About</span>
-                        </Link>
                         <Link to="/profile" className="btn btn-link text-secondary">
-                                <span id="profile" className="text-secondary">Profile</span>
-                        </Link>
-                        <Link to="" className="btn btn-link text-secondary">
-                                <span id="connect" className="nav-link" href="#">Connect</span>
+                                <span id="profile" className="text-secondary">Home</span>
                         </Link>
                         <Link to="#" className="btn btn-link text-secondary" onClick={this.logout}>
                             <span id="logout" className="text-secondary">Logout</span>

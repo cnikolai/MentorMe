@@ -75,6 +75,11 @@ html {
     color: black;
 }
 
+#indeed:hover {
+    background-color: silver;
+    color: black;
+}
+
 #logout:hover {
     background-color: rgb(177, 39, 39);
     color: white;
