@@ -1,4 +1,6 @@
 import React from 'react';
+//import { Redirect } from 'react-router-dom';
+//import { Route, Link } from 'react-router-dom';
 import "./style.css";
 
 function Questionnaire() {
