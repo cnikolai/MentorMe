@@ -86,8 +86,9 @@ router.post('/login',bodyParser.urlencoded({ extended: true }), (req, res, next)
 
 // Logout
 router.post('/logout', (req, res) => {
+  console.log("inside logout");
   req.logout();
-  res.redirect('/users/login');
+  return res.redirect('/users/login');
 });
 
 module.exports = router;

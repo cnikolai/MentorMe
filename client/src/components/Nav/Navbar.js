@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { Redirect } from 'react-router-dom'
-import { Route, Link } from 'react-router-dom'
+//import { Route } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 //import '../App.css';
 import axios from 'axios'
 import "./style.css";
@@ -13,17 +14,19 @@ class Navbar extends Component {
 
     logout(event) {
         event.preventDefault()
-        console.log('logging out')
+        console.log('logging out');
         axios.post('/users/logout').then(response => {
+          console.log("inside logout");
           console.log(response.data)
           if (response.status === 200) {
             this.props.updateUser({
               loggedIn: false,
               username: null
-            })
-          }
+            });
+          };
+          window.location = "/login";
         }).catch(error => {
-            console.log('Logout error')
+            console.log('Logout error: ',error);
         })
       }
 
@@ -59,7 +62,7 @@ class Navbar extends Component {
                                 <span id="connect" className="nav-link" href="#">Connect</span>
                         </Link>
                         <Link to="#" className="btn btn-link text-secondary" onClick={this.logout}>
-                            <span id="logout" className="text-secondary">logout</span>
+                            <span id="logout" className="text-secondary">Logout</span>
                         </Link>
                         </section>
 

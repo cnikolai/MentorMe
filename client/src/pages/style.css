@@ -1,7 +1,7 @@
 html {
-    position: relative;
+    /* position: relative;
     text-align: center;
-    background-color: white;
+    background-color: white; */
 }
 
 .errors {
@@ -10,6 +10,13 @@ html {
 
 .noerrors {
     display: none;
+}
+
+.container2 {
+    display: flex;
+    justify-content: center; /* align horizontal */
+    align-items: center; /* align vertically */
+    height: 500px;
 }
 
 
