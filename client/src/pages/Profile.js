@@ -155,11 +155,6 @@ class Profile extends Component {
                   
                   </div>
 
-                  <div className="user-options" id='logout' onClick={this.logoutClick}>
-                    Log Out
-                  
-                  </div>
-
                 </div>
 
                 <div className="col-10" id="profile-view">
@@ -186,6 +181,10 @@ class Profile extends Component {
 
                     <div>
                       {(this.state.isEmptyState || this.state.mentorClick) && <Matches mentorClick={this.mentorClick} />}
+                    </div>
+
+                    <div>
+                      {(this.state.isEmptyState || this.state.chatClick) && <Chat chatClick={this.chatClick} />}
                     </div>
 
                     <div>

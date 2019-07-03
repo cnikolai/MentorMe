@@ -27,6 +27,12 @@ function Chat() {
                 <p class="text-left">Maybe work on learning more React?</p>
                 <span className="time-left">11:05</span>
             </div>
+
+            <div class="input-group">
+                <textarea class="form-control" aria-label="With textarea"></textarea>
+                <button type="submit" className="btn btn-success">Send</button>
+            </div>
+            
         </div>
     );
 }

@@ -64,7 +64,7 @@ class Indeed extends Component {
             return (
                 <div className="job-wrapper">
                     Job: <input type="text" value={this.state.jobBox} onChange={this.handleJobChange}></input>
-                    City: <input type="text" placeholder="Los Angles, CA" value={this.state.cityBox} onChange={this.handleCityChange}></input>
+                    City: <input type="text" placeholder="Los Angeles, CA" value={this.state.cityBox} onChange={this.handleCityChange}></input>
                     <button onClick={this.indeedSearch}>Indeed Search</button>
 
                     <Wrapper>
