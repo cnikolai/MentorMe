@@ -25,10 +25,10 @@ const userSchema = new Schema({
         type: Boolean,
         // required: true
     },
-    interest: [{
+    interest: {
         type: Schema.Types.ObjectId,
         ref: "Interest"
-    }]
+    }
 
 });
 

@@ -33,20 +33,24 @@ router.post('/register', (req, res) => {
   }
 
   if (errors.length > 0) {
-      res.json({'register': {
-      errors,
-      username,
-      password
-    }});
+    res.json({
+      'register': {
+        errors,
+        username,
+        password
+      }
+    });
   } else {
     db.User.findOne({ username: username }).then(user => {
       if (user) {
         errors.push({ msg: 'Username already exists' });
-        res.json({'register': {
-          errors,
-          username,
-          password
-        }});
+        res.json({
+          'register': {
+            errors,
+            username,
+            password
+          }
+        });
       } else {
         const newUser = new db.User({
           username,
@@ -54,34 +58,34 @@ router.post('/register', (req, res) => {
           isMentee
         });
         newUser.setPassword(req.body.password);
-        console.log("newUser: ",newUser);
+        console.log("newUser: ", newUser);
         db.User
           .create(newUser)
           .catch(err => console.log(err));
-        res.json({"ok": "You are now registered and can log in"});
+        res.json({ "ok": "You are now registered and can log in" });
       }
     });
   }
 });
 
 // Login
-router.post('/login',bodyParser.urlencoded({ extended: true }), (req, res, next) => {
+router.post('/login', bodyParser.urlencoded({ extended: true }), (req, res, next) => {
   console.log("inside post login");
   passport.authenticate('local', function (err, user, info) {
     console.log("inside passport logic");
     console.log("info", info);
     if (err) { return next(err) }
     if (!user) {
-         console.log('bad authentication');
-         //req.session.messages = [info.message];
-         return res.redirect('/login')
+      console.log('bad authentication');
+      //req.session.messages = [info.message];
+      return res.redirect('/login')
     }
     req.logIn(user, function (err) {
-         console.log('good authentication');
-         if (err) { return next(err); }
-         return res.redirect('/?username='+user.username);
+      console.log('good authentication');
+      if (err) { return next(err); }
+      return res.redirect('/?username=' + user.username);
     });
-})(req, res, next);
+  })(req, res, next);
 });
 
 // Logout
@@ -89,6 +93,68 @@ router.post('/logout', (req, res) => {
   console.log("inside logout");
   req.logout();
   return res.redirect('/users/login');
+});
+
+// interest saving
+router.post("/save-interest/:id", function (req, res) {
+  db.Interest.create(req.body)
+    .then(function (dbInterest) {
+      return db.User.findOneAndUpdate({ _id: req.params.id }, { $set: { interest: dbInterest._id } }, { new: true });
+
+    })
+    .then(function (dbUser) {
+      res.json(dbUser);
+    })
+    .catch(function (err) {
+      // If an error occurred, send it to the client
+      res.json(err);
+    });
+});
+
+// get user with interest (testing)
+router.get("/user-interest/:id", function (req, res) {
+  db.User.findOne({ _id: req.params.id })
+    // ..and populate all of the interests associated with it
+    .populate("interest")
+    .then(function (dbUser) {
+      console.log(dbUser)
+      res.json(dbUser);
+    })
+    .catch(function (err) {
+      // If an error occurred, send it to the client
+      res.json(err);
+    });
+});
+
+// get all user with interest 
+router.get("/all-users", function (req, res) {
+  db.User.find({})
+    // ..and populate all of the interests associated with it
+    .populate("interest")
+    .then(function (dbUser) {
+      console.log(dbUser)
+      res.json(dbUser);
+    })
+    .catch(function (err) {
+      // If an error occurred, send it to the client
+      res.json(err);
+    });
+});
+
+// update interest
+router.put("/save-interest/:id", function (req, res) {
+  db.Interest.update(req.body)
+    .then(function (dbInterest) {
+      return db.User.findOneAndUpdate({ _id: req.params.id }, { $set: { interest: dbInterest._id } }, { new: false });
+
+    })
+    .then(function (dbUser) {
+      res.json(dbUser);
+    })
+    .catch(function (err) {
+      // If an error occurred, send it to the client
+      res.json(err);
+    });
 });
 
 module.exports = router;
