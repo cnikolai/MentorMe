@@ -14,76 +14,40 @@ class Matches extends Component {
                     <div className="card col">
                         <img className="card-img-top" src="..." alt="Card image cap" />
                         <div className="card-body">
-                            <h5 className="card-title">Profession</h5>
+                            <h6 className="card-title">Name</h6>
+                            <h6 className="card-title">Profession</h6>
                             <p className="card-text">Brief information about interests and profession.</p>
-                            <a href="#" className="btn btn-primary">Send a Message</a>
+                            <a href="#" className="btn btn-primary send-mes">Send a Message</a>
                         </div>
                     </div>
 
                     <div className="card col">
                         <img className="card-img-top" src="..." alt="Card image cap" />
                         <div className="card-body">
-                            <h5 className="card-title">Profession</h5>
+                            <h6 className="card-title">Name</h6>
+                            <h6 className="card-title">Profession</h6>
                             <p className="card-text">Brief information about interests and profession.</p>
-                            <a href="#" className="btn btn-primary">Send a Message</a>
+                            <a href="#" className="btn btn-primary send-mes">Send a Message</a>
                         </div>
                     </div>
 
                     <div className="card col">
                         <img className="card-img-top" src="..." alt="Card image cap" />
                         <div className="card-body">
-                            <h5 className="card-title">Profession</h5>
+                            <h6 className="card-title">Name</h6>
+                            <h6 className="card-title">Profession</h6>
                             <p className="card-text">Brief information about interests and profession.</p>
-                            <a href="#" className="btn btn-primary">Send a Message</a>
+                            <a href="#" className="btn btn-primary send-mes">Send a Message</a>
                         </div>
                     </div>
 
                     <div className="card col">
                         <img className="card-img-top" src="..." alt="Card image cap" />
                         <div className="card-body">
-                            <h5 className="card-title">Profession</h5>
+                            <h6 className="card-title">Name</h6>
+                            <h6 className="card-title">Profession</h6>
                             <p className="card-text">Brief information about interests and profession.</p>
-                            <a href="#" className="btn btn-primary">Send a Message</a>
-                        </div>
-                    </div>
-
-                </div>
-
-                <div className="row">
-
-                    <div className="card col">
-                        <img className="card-img-top" src="..." alt="Card image cap" />
-                        <div className="card-body">
-                            <h5 className="card-title">Profession</h5>
-                            <p className="card-text">Brief information about interests and profession.</p>
-                            <a href="#" className="btn btn-primary">Send a Message</a>
-                        </div>
-                    </div>
-
-                    <div className="card col">
-                        <img className="card-img-top" src="..." alt="Card image cap" />
-                        <div className="card-body">
-                            <h5 className="card-title">Profession</h5>
-                            <p className="card-text">Brief information about interests and profession.</p>
-                            <a href="#" className="btn btn-primary">Send a Message</a>
-                        </div>
-                    </div>
-
-                    <div className="card col">
-                        <img className="card-img-top" src="..." alt="Card image cap" />
-                        <div className="card-body">
-                            <h5 className="card-title">Profession</h5>
-                            <p className="card-text">Brief information about interests and profession.</p>
-                            <a href="#" className="btn btn-primary">Send a Message</a>
-                        </div>
-                    </div>
-
-                    <div className="card col">
-                        <img className="card-img-top" src="..." alt="Card image cap" />
-                        <div className="card-body">
-                            <h5 className="card-title">Profession</h5>
-                            <p className="card-text">Brief information about interests and profession.</p>
-                            <a href="#" className="btn btn-primary">Send a Message</a>
+                            <a href="#" className="btn btn-primary send-mes">Send a Message</a>
                         </div>
                     </div>
 
