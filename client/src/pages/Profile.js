@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import UserProfile from '../components/UserProfile/Index';
 import FindMentor from '../components/FindMentor/index';
 import Questionnaire from '../components/Questionnaire';
+import Chat from '../components/Chat';
 import Indeed from './Indeed';
 import './style.css';
 
@@ -163,10 +164,8 @@ class Profile extends Component {
                 <div className="col-10" id="profile-view">
                   <div id="user-profile">
 
-                    
-
                     <div>
-                      {(this.state.isEmptyState || this.state.userClick) && <UserProfile userClick={this.userClick} />}                                     
+                      {(this.state.isEmptyState || this.state.userClick) && <UserProfile userClick={this.userClick} />}
                     </div>
 
                     <div>
