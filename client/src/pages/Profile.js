@@ -174,7 +174,8 @@ class Profile extends Component {
                             fMentorClick={this.fMentorClick}
                             src={"https://images.pexels.com/photos/1716861/pexels-photo-1716861.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940"}
                             mentorname={"Pika Chu"}
-                            description={"Profession: Detective. Avid pursuer of clues and interested in broadening horizons."} 
+                            profession={"Detective"}
+                            description={"Avid pursuer of clues and interested in broadening horizons."} 
                           />
                       }
                     </div>
