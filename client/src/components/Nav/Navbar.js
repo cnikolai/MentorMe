@@ -13,25 +13,25 @@ class Navbar extends Component {
         event.preventDefault()
         console.log('logging out');
         axios.post('/users/logout').then(response => {
-          console.log("inside logout");
-          console.log(response.data)
-          if (response.status === 200) {
-            this.props.updateUser({
-              loggedIn: false,
-              username: null
-            });
-          };
-          window.location = "/login";
+            console.log("inside logout");
+            console.log(response.data)
+            if (response.status === 200) {
+                this.props.updateUser({
+                    loggedIn: false,
+                    username: null
+                });
+            };
+            window.location = "/login";
         }).catch(error => {
-            console.log('Logout error: ',error);
+            console.log('Logout error: ', error);
         })
-      }
+    }
 
     render() {
         const loggedIn = this.props.loggedIn;
         console.log('navbar render, props: ')
         console.log(this.props);
-        
+
         return (
             <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
                 <Link to="/" className="navbar-brand logo">
@@ -43,30 +43,30 @@ class Navbar extends Component {
                 </button>
 
                 <div className="collapse navbar-collapse nav justify-content-end" id="navbarNav">
-                    
+
                     {loggedIn ? (
                         <section className="navbar-section">
-                        <Link to="/profile" className="btn btn-link text-secondary">
+                            <Link to="/profile" className="btn btn-link text-secondary">
                                 <span id="profile" className="text-secondary">Home</span>
-                        </Link>
-                        <Link to="#" className="btn btn-link text-secondary" onClick={this.logout}>
-                            <span id="logout" className="text-secondary">Logout</span>
-                        </Link>
+                            </Link>
+                            <Link to="#" className="btn btn-link text-secondary" onClick={this.logout}>
+                                <span id="logout" className="text-secondary">Logout</span>
+                            </Link>
                         </section>
 
-                        ) : (
+                    ) : (
 
-                        <section className="navbar-section">
-                            <Link to="/login" className="btn btn-link text-secondary">
-                                <span id="login" className="text-secondary">Login</span>
-                            </Link>
-                            <Link to="/signup" className="btn btn-link">
-                                <span id="signup" className="text-secondary">Sign Up</span>
-                            </Link>
+                            <section className="navbar-section">
+                                <Link to="/login" className="btn btn-link text-secondary">
+                                    <span id="login" className="text-secondary">Login</span>
+                                </Link>
+                                <Link to="/signup" className="btn btn-link">
+                                    <span id="signup" className="text-secondary">Sign Up</span>
+                                </Link>
 
-                        </section>
+                            </section>
                         )}
-                    
+
                 </div>
             </nav>
 

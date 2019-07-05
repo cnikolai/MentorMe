@@ -82,8 +82,10 @@ router.post('/login', bodyParser.urlencoded({ extended: true }), (req, res, next
     }
     req.logIn(user, function (err) {
       console.log('good authentication');
+      console.log("User object: " + req.user);
       if (err) { return next(err); }
-      return res.redirect('/?username=' + user.username);
+      // return res.redirect('/?username=' + user.username);
+      return res.json(req.user);
     });
   })(req, res, next);
 });

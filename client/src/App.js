@@ -15,6 +15,7 @@ class App extends Component {
     super()
     this.state = {
       loggedIn: false,
+      id: null,
       username: null
     }
 
@@ -33,7 +34,7 @@ class App extends Component {
 
   getUser() {
     //API.getUser(username);
-    axios.get('api/user/').then(response => {
+    axios.get('/users/all-users/' + this.state.id).then(response => {
       console.log('Get user response: ')
       console.log(response.data)
       if (response.data.user) {
@@ -41,12 +42,14 @@ class App extends Component {
 
         this.setState({
           loggedIn: true,
+          id: response.data.user._id,
           username: response.data.user.username
         })
       } else {
         console.log('Get user: no user');
         this.setState({
           loggedIn: false,
+          id: null,
           username: null
         })
       }
@@ -71,7 +74,7 @@ class App extends Component {
         <Route
           path="/profile"
           render={() =>
-            <Profile user={this.state.username}/>}
+            <Profile user={this.state.username} />}
         />
         <Route
           exact path="/indeed"
