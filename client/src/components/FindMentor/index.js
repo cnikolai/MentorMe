@@ -2,7 +2,19 @@ import React, { Component } from 'react';
 //import { Redirect } from 'react-router-dom';
 //import { Route, Link } from 'react-router-dom';
 import "./style.css";
+import Axios from 'axios';
 
+Axios.get("/users/mentors").then(response => {
+    console.log(response.data);
+   
+        this.setState(
+            {name: response.data.username},
+            {img: response.data.img},
+            {profession: response.data.profession},
+            {description: response.data.description}
+        )
+    
+});
 class FindMentor extends Component {
 
 
@@ -11,7 +23,7 @@ class FindMentor extends Component {
             <div className="card text-center">
                 <img src={this.props.src} className="card-img-top" alt="..." />
                 <div className="card-body">
-                    <h5 className="card-title">{this.props.mentorname}</h5>
+                    <h5 className="card-title">{this.name}</h5>
                     <h6 className="card-title">Profession: {this.props.profession}</h6>
                     <p className="card-text">{this.props.description}</p>
                     <a href="#" id="connect" className="btn btn-primary">Connect</a>

@@ -188,4 +188,22 @@ router.delete("/delete-mentor/:id", function (req, res) {
     });
 });
 
+// get All Mentors
+router.get("/mentors", function (req, res) {
+  db.User.find({
+    isMentee: false
+  })
+    // ..and populate all of the interests associated with it
+    .populate("interests")
+    .then(function (dbUser) {
+      console.log(dbUser)
+      res.json(dbUser);
+    })
+    .catch(function (err) {
+      // If an error occurred, send it to the client
+      res.json(err);
+    });
+});
+
+
 module.exports = router;
