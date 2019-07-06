@@ -63,6 +63,7 @@ class Indeed extends Component {
         } else {
             return (
                 <div className="job-wrapper">
+                    <h1>Job Search on Indeed</h1>
                     Job: <input type="text" value={this.state.jobBox} onChange={this.handleJobChange}></input>
                     City: <input type="text" placeholder="Los Angeles, CA" value={this.state.cityBox} onChange={this.handleCityChange}></input>
                     <button onClick={this.indeedSearch}>Indeed Search</button>

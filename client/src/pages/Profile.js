@@ -125,15 +125,12 @@ class Profile extends Component {
         return (
             <div className="container-fluid text-center">
               <div className="row">
-
                 <div className="col-2 user-info">
-                  
 
                   <div className="user-options" id="username" onClick={this.userClick}>
                     {this.props.user}
                   
                   </div>
-                  
 
                   <div className="user-options" id='fMentor' name="fMentorClick" onClick={this.fMentorClick}>
                     Connect
@@ -164,7 +161,7 @@ class Profile extends Component {
 
                 <div className="col-10" id="profile-view">
                   <div id="user-profile">
-
+                  
                     <div>
                       {(this.state.isEmptyState || this.state.userClick) && <UserProfile userClick={this.userClick} />}
                     </div>

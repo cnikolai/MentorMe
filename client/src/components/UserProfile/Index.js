@@ -15,6 +15,7 @@ class UserProfile extends Component {
     render() {
         return (
             <div className='container-fluid text-center profile'>
+                <h1>Profile Page</h1>
                 <div className="row">
                     <div className='col' id="userImage">
                         <img src="../../images/coder.jpg" className="img-fluid" alt="img-thumbnail" />
