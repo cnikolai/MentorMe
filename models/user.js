@@ -28,7 +28,11 @@ const userSchema = new Schema({
     interest: {
         type: Schema.Types.ObjectId,
         ref: "Interest"
-    }
+    },
+    savedMentor: [{
+        type: Schema.Types.ObjectId,
+        ref: "SavedMentor"
+    }]
 
 });
 
