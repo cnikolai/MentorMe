@@ -13,14 +13,6 @@ class Profile extends Component {
     this.state = { fMentorClick: false, userClick: true, mentorClick: false, chatClick: false, indeedClick: false, logoutClick: false, questionClick: false }
   }
 
-  // handleClick = () => {
-  //   this.setState({
-      
-  //   })
-  //   console.log('btn was clicked.');
-
-  // }
-
     userClick = () => {
       this.setState({
         userClick: true,
@@ -161,7 +153,7 @@ class Profile extends Component {
                   <div id="user-profile">
 
                     <div>
-                      {(this.state.isEmptyState || this.state.userClick) && <UserProfile userClick={this.userClick} />}
+                      {(this.state.isEmptyState || this.state.userClick) && <UserProfile userClick={this.userClick} username={this.props.id} location="maryland" interests="javascript, python, puzzles" profession="architect" />}
                     </div>
 
                     <div>
