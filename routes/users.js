@@ -118,6 +118,7 @@ router.get("/single-user/:id", function (req, res) {
   db.User.findOne({ _id: req.params.id })
     // ..and populate all of the interests associated with it
     .populate("interest")
+    .populate("savedMentor")
     .then(function (dbUser) {
       console.log(dbUser)
       res.json(dbUser);
@@ -132,7 +133,8 @@ router.get("/single-user/:id", function (req, res) {
 router.get("/all-users", function (req, res) {
   db.User.find({})
     // ..and populate all of the interests associated with it
-    .populate("interest")
+    .populate("interest savedMentor")
+    // .populate("SavedMentor")
     .then(function (dbUser) {
       console.log(dbUser)
       res.json(dbUser);
@@ -155,6 +157,33 @@ router.put("/save-interest/:id", function (req, res) {
     })
     .catch(function (err) {
       // If an error occurred, send it to the client
+      res.json(err);
+    });
+});
+
+// mentor saving (ID OF USER)
+router.post("/save-mentor/:id", function (req, res) {
+  db.SavedMentor.create(req.body)
+    .then(function (dbModel) {
+      return db.User.findOneAndUpdate({ _id: req.params.id }, { $push: { savedMentor: dbModel._id } }, { new: true });
+
+    })
+    .then(function (dbUser) {
+      res.json(dbUser);
+    })
+    .catch(function (err) {
+      // If an error occurred, send it to the client
+      res.json(err);
+    });
+});
+
+// ID OF MENTOR
+router.delete("/delete-mentor/:id", function (req, res) {
+  db.SavedMentor.deleteOne({ _id: req.params.id })
+    .then(function (dbModel) {
+      res.json(dbModel);
+    })
+    .catch(function (err) {
       res.json(err);
     });
 });
