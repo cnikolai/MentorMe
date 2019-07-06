@@ -6,6 +6,7 @@ class Login extends Component {
     constructor() {
         super()
         this.state = {
+            id: '',
             username: '',
             password: '',
             redirectTo: null
@@ -37,11 +38,12 @@ class Login extends Component {
                     console.log("login username: ", response.data);
                     this.props.updateUser({
                         loggedIn: true,
-                        username: this.state.username
+                        id: response.data._id,
+                        username: response.data.username
                     })
                     // update the state to redirect to home
                     this.setState({
-                        redirectTo: '/'
+                        redirectTo: '/profile'
                     });
                 }
             }).catch(error => {
@@ -58,7 +60,7 @@ class Login extends Component {
             return (
                 <div className="container2">
                     <form className="form-horizontal">
-                    <h4>Login</h4>
+                        <h4>Login</h4>
                         <div className="form-group">
                             <div className="col-1 col-ml-auto">
                                 <label className="form-label" htmlFor="username">Username</label>
@@ -96,7 +98,7 @@ class Login extends Component {
                                 type="submit">Login</button>
                         </div>
                     </form>
-            
+
                 </div>
             )
         }

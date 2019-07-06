@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import "./style.css";
 import RadioButton from "../RadioButton"
-
-
+import Axios from 'axios';
 
 class Questionnaire extends Component {
 
@@ -21,12 +20,32 @@ class Questionnaire extends Component {
         q5: ""
     }
 
+    componentDidMount() {
+        this.retrieveAnswers(this.props.userid);
+    }
+
+    retrieveAnswers = userid => {
+        Axios.get("/users/single-user/" + userid).then(response => {
+            console.log(response.data);
+            if (response.data.interest) {
+                this.setState(
+                    {q1: response.data.interest.q1},
+                    {q2: response.data.interest.q2},
+                    {q3: response.data.interest.q3},
+                    {q4: response.data.interest.q4},
+                    {q5: response.data.interest.q5}
+                )
+            }
+        });
+    }
+
     handleSubmit = () => {
         console.log("q1: " + this.state.q1);
         console.log("q2: " + this.state.q2);
         console.log("q3: " + this.state.q3);
         console.log("q4: " + this.state.q4);
         console.log("q5: " + this.state.q5);
+        console.log("userid: " + this.props.userid);
     }
 
     handleSelect = event => {

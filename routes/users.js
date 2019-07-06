@@ -82,8 +82,10 @@ router.post('/login', bodyParser.urlencoded({ extended: true }), (req, res, next
     }
     req.logIn(user, function (err) {
       console.log('good authentication');
+      console.log("User object: " + req.user);
       if (err) { return next(err); }
-      return res.redirect('/?username=' + user.username);
+      // return res.redirect('/?username=' + user.username);
+      return res.json(req.user);
     });
   })(req, res, next);
 });
@@ -111,8 +113,8 @@ router.post("/save-interest/:id", function (req, res) {
     });
 });
 
-// get user with interest (testing)
-router.get("/user-interest/:id", function (req, res) {
+// get user with interest
+router.get("/single-user/:id", function (req, res) {
   db.User.findOne({ _id: req.params.id })
     // ..and populate all of the interests associated with it
     .populate("interest")

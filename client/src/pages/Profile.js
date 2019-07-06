@@ -147,6 +147,11 @@ class Profile extends Component {
                   
                   </div>
 
+                  <div className="user-options" id='questionnaire' onClick={this.questionClick}>
+                    Questionnaire
+                  
+                  </div>
+
                 </div>
 
                 <div className="col-10" id="profile-view">
@@ -168,7 +173,7 @@ class Profile extends Component {
                     </div>
                     
                     <div>
-                      {(this.state.isEmptyState || this.state.questionClick) && <Questionnaire questionClick={this.questionClick} />}
+                      {(this.state.isEmptyState || this.state.questionClick) && <Questionnaire userid={this.props.id} questionClick={this.questionClick} />}
                     </div>
 
                     <div>
