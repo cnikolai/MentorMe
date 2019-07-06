@@ -113,8 +113,8 @@ router.post("/save-interest/:id", function (req, res) {
     });
 });
 
-// get user with interest (testing)
-router.get("/user-interest/:id", function (req, res) {
+// get user with interest
+router.get("/single-user/:id", function (req, res) {
   db.User.findOne({ _id: req.params.id })
     // ..and populate all of the interests associated with it
     .populate("interest")

@@ -74,7 +74,7 @@ class App extends Component {
         <Route
           path="/profile"
           render={() =>
-            <Profile user={this.state.username} />}
+            <Profile user={this.state.username} id={this.state.id} />}
         />
         <Route
           exact path="/indeed"
