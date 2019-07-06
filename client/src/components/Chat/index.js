@@ -4,6 +4,7 @@ import "./style.css"
 function Chat() {
     return (
         <div className="bigcontainer">
+            <h1 className="text-center">Chats</h1>
             <div className="container">
                 <img src={require("../../images/avatar.png")} alt="Avatar" />
                 <p className="text-right">Hello. How are you today?</p>

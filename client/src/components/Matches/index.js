@@ -9,8 +9,10 @@ class Matches extends Component {
     render() {
         return (
             <div className="container-fluid text-center">
-                <div className="row">
+                <h1 className="text-center">Your Connections</h1>
 
+                <div className="row">
+                
                     <div className="card col">
                         <img className="card-img-top" src="..." alt="Card image cap" />
                         <div className="card-body">
