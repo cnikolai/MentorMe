@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 //import { Route, Link } from 'react-router-dom';
 import "./style.css";
 import Axios from 'axios';
+import Wrapper from '../Wrapper';
 class FindMentor extends Component {
     state = {
         result: []
@@ -37,6 +38,7 @@ class FindMentor extends Component {
 
             <div className="cardcontainer">
                 <h1 className="text-center">Make New Connections</h1>
+                <Wrapper>
                     {/* loop through array and create card for obj */}
                     {this.state.result.map(mentor => (
                         <div className="card text-center mx-auto" key={mentor._id}>
@@ -50,6 +52,7 @@ class FindMentor extends Component {
                             </div>
                         </div>
                     ))}
+                </Wrapper>
             </div>
         );
     };
