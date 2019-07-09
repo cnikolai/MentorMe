@@ -167,7 +167,7 @@ class Profile extends Component {
                     </div>
 
                     <div>
-                      {(this.state.isEmptyState || this.state.fMentorClick) && <FindMentor 
+                      {(this.state.isEmptyState || this.state.fMentorClick) && <FindMentor userid={this.props.id}
                             fMentorClick={this.fMentorClick}
                             src={"https://images.pexels.com/photos/1716861/pexels-photo-1716861.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940"}
                             mentorname={"Pika Chu"}

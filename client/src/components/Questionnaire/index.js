@@ -13,6 +13,8 @@ class Questionnaire extends Component {
             { value: "4", buttonName: "4" },
             { value: "5", buttonName: "5" }
         ],
+        previouslyAnswered: false,
+        successfulSubmit: false,
         q1: "",
         q2: "",
         q3: "",
@@ -29,11 +31,14 @@ class Questionnaire extends Component {
             console.log(response.data);
             if (response.data.interest) {
                 this.setState(
-                    {q1: response.data.interest.q1},
-                    {q2: response.data.interest.q2},
-                    {q3: response.data.interest.q3},
-                    {q4: response.data.interest.q4},
-                    {q5: response.data.interest.q5}
+                    {
+                        q1: response.data.interest.q1,
+                        q2: response.data.interest.q2,
+                        q3: response.data.interest.q3,
+                        q4: response.data.interest.q4,
+                        q5: response.data.interest.q5,
+                        previouslyAnswered: true
+                    }
                 )
             }
         });
@@ -46,6 +51,34 @@ class Questionnaire extends Component {
         console.log("q4: " + this.state.q4);
         console.log("q5: " + this.state.q5);
         console.log("userid: " + this.props.userid);
+
+        if (this.state.previouslyAnswered) {
+            Axios.put("/users/save-interest/" + this.props.userid, {
+                q1: this.state.q1,
+                q2: this.state.q2,
+                q3: this.state.q3,
+                q4: this.state.q4,
+                q5: this.state.q5
+            }).then(response => {
+                if (response.data.interest) {
+                    this.setState({ successfulSubmit: true });
+                    this.props.submittedForm();
+                }
+            });
+        } else {
+            Axios.post("/users/save-interest/" + this.props.userid, {
+                q1: this.state.q1,
+                q2: this.state.q2,
+                q3: this.state.q3,
+                q4: this.state.q4,
+                q5: this.state.q5
+            }).then(response => {
+                if (response.data.interest) {
+                    this.setState({ successfulSubmit: true });
+                    this.props.submittedForm();
+                }
+            });
+        }
     }
 
     handleSelect = event => {
