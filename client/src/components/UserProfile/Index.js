@@ -10,10 +10,12 @@ class UserProfile extends Component {
         var url = "https://res.cloudinary.com/dsegwvrng/image/upload/v1562724476/blank-profile-picture-973460_640_kokqis.png";
         var url = "";
         var encoded = encodeURI(url);
-        this.state = { profilepictureurl: ''};
+        this.state = { profilepictureurl: '', interests: '', location: '', profession: '', edit: false};
          //this.state = { pictures: [] };
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
+        this.handleEdit = this.handleEdit.bind(this);
+
     }
 
     // onDrop(picture) {
@@ -37,27 +39,39 @@ class UserProfile extends Component {
 
     handleChange(event) {
         this.setState({
-            [event.target.name]: encodeURI(event.target.value)
+            [event.target.name]: event.target.value
+        })
+    }
+
+    handleEdit(event) {
+        event.preventDefault();
+        console.log('handleEdit');
+        this.setState({
+            edit: true
         })
     }
 
     handleSubmit(event) {
         event.preventDefault();
         console.log('handleSubmit');
-        var iid = this.props.id;
-        console.log("id inside handlesubmit: "+ iid);
-        var profilepictureurl = this.state.profilepictureurl;
+        var id = this.props.id;
+        console.log("id inside handlesubmit: "+ id);
         axios
-            .post('/users/profile/' + iid, {
-                profilepictureurl: profilepictureurl
+            .post('/users/profile/' + id, {
+                profilepictureurl: encodeURI(this.state.profilepictureurl),
+                location: this.state.location, 
+                profession: this.state.profession,
+                interests: this.state.interests
             })
             .then(response => {
                 console.log('profile response: ');
                 //console.log(response.data);
-
             }).catch(error => {
                 console.log('profile picture url error: ');
                 console.log(error);
+            });
+            this.setState({
+                edit: false
             });
     }
 
@@ -66,8 +80,9 @@ class UserProfile extends Component {
         .then(res => {
             console.log("res.data inside profile: ", res.data);
                 this.setState({
-                    interests: ["javascript", "react", "puzzles"],
+                    interests: res.data.interests,
                     location: res.data.location,
+                    profession: res.data.profession,
                     profilepictureurl: res.profileImage
                 });
         })
@@ -78,55 +93,117 @@ class UserProfile extends Component {
     }
 
     render() {
-        return (
-            <div className='container-fluid text-center profile'>
-            <div className="row" id="title">
-                    <h1>Profile</h1>
-            </div>
-                <div className="display-left">
-                    <div id="userImage">
-                        <img src={coder} alt="Profile Picture"></img>
-                        {/* {this.state.pictures.map(picture => (<img key={picture.name} src={URL.createObjectURL(picture)} alt={picture.name}/>))} */}
+        if (!this.state.edit) {
+            return (
+                <div className='container-fluid text-center profile'>
+                    <div className="row" id="title">
+                        <h1>Profile</h1>
                     </div>
                     <div className="display-left">
-                        {/* <ImageUploader
-                            withIcon={true}
-                            singleImage={true}
-                            buttonText='Choose Image'
-                            onChange={this.onDrop}
-                            imgExtension={['.jpg', '.gif', '.png', '.gif']}
-                            maxFileSize={5242880}
-                        /> */}
-                        <form>
-                        <input className="form-input"
-                            type="text"
-                            id="profilepictureurl"
-                            name="profilepictureurl"
-                            placeholder="Profile Picture URL"
-                            size="70"
-                            value={this.state.profilepictureurl}
-                            onChange={this.handleChange}
-                        />
-                        <div className="form-group ">
-                            <div className="col-7"></div>
-                            <button
-                                className="btn btn-primary col-md-2 display-left"
-                                onClick={this.handleSubmit}
-                                type="submit">Upload</button>
+                        <div id="userImage">
+                            <img src={this.state.profilepictureurl} alt="Profile Picture"></img>
+                            {/* {this.state.pictures.map(picture => (<img key={picture.name} src={URL.createObjectURL(picture)} alt={picture.name}/>))} */}
                         </div>
-                        </form>
-                    </div>
-                </div>
-                
-                <div id="userInfo">
-                    <br></br>
-                    <div className="display-left"><strong>User Name:</strong> {this.props.username}</div><br></br>
-                    <div className="display-left"><strong>User Location:</strong> {this.props.location}</div><br></br>
-                    <div className="display-left"><strong>User Profession: </strong>{this.props.profession}</div><br></br>
-                    <div className="display-left"><strong>User Interests: </strong>{this.props.interests}</div>
+                            {/* <div className="form-group ">
+                                <div className="col-7"></div>
+                                <button
+                                    className="btn btn-primary col-md-2 display-left"
+                                    onClick={this.handleSubmit}
+                                    type="submit">Upload</button>
+                            </div> */}
+                            {/* <div className="display-left">
+                                <ImageUploader
+                                    withIcon={true}
+                                    singleImage={true}
+                                    buttonText='Choose Image'
+                                    onChange={this.onDrop}
+                                    imgExtension={['.jpg', '.gif', '.png', '.gif']}
+                                    maxFileSize={5242880}
+                                />
+                            </div> */}
+                            <div id="userInfo">
+                                <br></br>
+                                <div className="display-left"><strong>User Name:</strong> {this.props.username}</div><br></br>
+                                <div className="display-left"><strong>User Location:</strong> {this.state.location}</div><br></br>
+                                <div className="display-left"><strong>User Profession: </strong>{this.state.profession}</div><br></br>
+                                <div className="display-left"><strong>User Interests: </strong>{this.state.interests}</div>
+                            </div>
+                            <form>
+                        <div className="form-group">
+                            <button
+                                className="btn btn-primary col-8 display-left"
+                                onClick={this.handleEdit}
+                                type="submit">Edit</button>
+                        </div>
+                    </form>
                 </div>
             </div>
-        );
+            );
+        } else {
+            return (
+                <div className='container-fluid text-center profile'>
+                    <div className="row" id="title">
+                        <h1>Profile</h1>
+                    </div>
+                    <div className="display-left">
+                        <div id="userImage">
+                            <img src={this.state.profilepictureurl} alt="Profile Picture"></img>
+                        </div>
+                        <div className="display-left">
+                            <form>
+                                <input className="form-input display-left"
+                                    type="text"
+                                    id="profilepictureurl"
+                                    name="profilepictureurl"
+                                    placeholder="Profile Picture URL"
+                                    size="70"
+                                    value={this.state.profilepictureurl}
+                                    onChange={this.handleChange}
+                                />
+                                <br></br>
+                                <input className="form-input display-left"
+                                    type="text"
+                                    id="location"
+                                    name="location"
+                                    size="50"
+                                    placeholder="Location"
+                                    value={this.state.location}
+                                    onChange={this.handleChange}
+                                />
+                                <br></br>
+                                <input className="form-input display-left"
+                                    type="text"
+                                    id="profession"
+                                    name="profession"
+                                    size="50"
+                                    placeholder="Profession"
+                                    value={this.state.profession}
+                                    onChange={this.handleChange}
+                                />
+                                <br></br>
+                                <input className="form-input display-left"
+                                    type="text"
+                                    id="interests"
+                                    name="interests"
+                                    size="50"
+                                    placeholder="Interests"
+                                    value={this.state.interests}
+                                    onChange={this.handleChange}
+                                />
+                                <br></br>
+                                <div className="form-group ">
+                                    <div className="col-7"></div>
+                                    <button
+                                        className="btn btn-primary col-md-2 display-left"
+                                        onClick={this.handleSubmit}
+                                        type="submit">Submit</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            );
+        }
     }
 }
 

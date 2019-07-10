@@ -24,6 +24,7 @@ const userSchema = new Schema({
         type: Boolean
         // required: true
     },
+    //for matching interests
     interest: {
         type: Schema.Types.ObjectId,
         ref: "Interest"
@@ -32,6 +33,13 @@ const userSchema = new Schema({
         type: String
     },
     location: {
+        type: String
+    },
+    profession: {
+        type: String
+    },
+    //for profile interests information
+    interests: {
         type: String
     },
     savedMentor: [{
