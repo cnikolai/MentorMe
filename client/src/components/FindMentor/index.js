@@ -46,7 +46,7 @@ class FindMentor extends Component {
     questionnaireSubmitted = () => {
         console.log("questionaire submitted!");
         this.setState(
-            { questionnaireAnswered: true }, () => { this.mentors() }
+            { questionnaireAnswered: true }, () => { this.isQuestionnaireAnswered(this.props.userid) }
         )
     }
 
