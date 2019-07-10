@@ -29,10 +29,10 @@ const userSchema = new Schema({
         ref: "Interest"
     },
     profileImage: {
-      type: Buffer
+        type: String
     },
     location: {
-      type: String
+        type: String
     },
     savedMentor: [{
         type: Schema.Types.ObjectId,

@@ -152,16 +152,30 @@ router.get("/all-users", function (req, res) {
 
 //post profile picture
 router.post("/profile/:id", function (req, res) {
-  return db.User.findOneAndUpdate({ _id: req.params.id }, { $set: { profileImage: req.body } }, { new: false });
+  console.log("profile id:" + req.params.id);
+  console.log("profile image url: " + req.body.profilepictureurl);
+  return db.User.findOneAndUpdate({ _id: req.params.id }, { $set: { profileImage: req.body.profilepictureurl } },{new: true}, (err, doc) => {
+    if (err) {
+        console.log("Something wrong when updating data!");
+    }
+    console.log(doc);
+});
 });
 
 //get profile picture
 router.get("/profile/:id", async function (req, res) {
-  // const dbUser = await db.User.findOne({ _id: req.params.id });
-  // fs.readFile(dbUser.profileImage, function (err, data) {
-  //   res.writeHead(200, { 'Content-Type': 'image/jpeg' });
-  //   res.end(data); // Send the file data to the browser.
-  // });
+  console.log("profile id:" + req.params.id);
+  db.User.findOne({ _id: req.params.id })
+    // ..and populate all of the interests associated with it
+    .populate("interest")
+    .then(function (dbUser) {
+      console.log("dbUser: ", dbUser);
+      res.json(dbUser);
+    })
+    .catch(function (err) {
+      // If an error occurred, send it to the client
+      res.json(err);
+    });
 });
 
 // update interest
