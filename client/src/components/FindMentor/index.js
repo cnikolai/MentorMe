@@ -8,6 +8,7 @@ import Questionnaire from "../Questionnaire"
 class FindMentor extends Component {
     state = {
         result: [],
+        user: {},
         questionnaireAnswered: false,
         loadingQuestionaireResults: true
     }
@@ -18,13 +19,13 @@ class FindMentor extends Component {
             this.setState({
                 result: response.data
             })
-
+            this.filterMentors();
         });
     }
 
     componentDidMount() {
-        this.mentors();
         this.isQuestionnaireAnswered(this.props.userid);
+        // this.mentors();
     }
 
     isQuestionnaireAnswered = userid => {
@@ -32,11 +33,11 @@ class FindMentor extends Component {
             console.log(response.data);
             if (response.data.interest) {
                 this.setState(
-                    { questionnaireAnswered: true, loadingQuestionaireResults: false }
+                    { user: response.data, questionnaireAnswered: true, loadingQuestionaireResults: false }, () => { this.mentors() }
                 )
             } else {
                 this.setState(
-                    { questionnaireAnswered: false, loadingQuestionaireResults: false }
+                    { user: response.data, questionnaireAnswered: false, loadingQuestionaireResults: false }
                 )
             }
         });
@@ -45,12 +46,47 @@ class FindMentor extends Component {
     questionnaireSubmitted = () => {
         console.log("questionaire submitted!");
         this.setState(
-            { questionnaireAnswered: true }
+            { questionnaireAnswered: true }, () => { this.mentors() }
         )
     }
 
-    sortMentors = () => {
+    filterMentors = () => {
+        // filter out mentors who haven't done the questionnaire
+        const result = this.state.result.filter(mentor => { if (mentor.interest) return mentor; });
+        this.setState({ result });
+        this.sortMentors();
+    }
 
+    sortMentors = () => {
+        console.log(this.state.user)
+        var userScores = Object.values(this.state.user.interest);
+        var tempArr = [];
+
+        // Loop through the mentor array of objects
+        for (var i = 0; i < this.state.result.length; i++) {
+            // For each mentor we are going to test against the user, store their questionnaire results in a temp array for comparison
+            // questionnaire answers are json object, we'll turn it into an array
+            var mentorScores = Object.values(this.state.result[i].interest);
+            var totalDifference = 0;
+
+            // Go through the mentor's scores and find the total difference 
+            // (start at 1 so it doesn't try to compare interest ids and before the last index because that's some sort of mongodb property)
+            for (var j = 1; j < mentorScores.length - 1; j++) {
+                console.log(mentorScores[j], userScores[j]);
+                totalDifference += Math.abs(parseInt(mentorScores[j]) - parseInt(userScores[j]));
+            }
+
+            console.log("=====");
+
+            // totalDifference will be added as a new poperty to the mentors
+            var appendTotalDifference = this.state.result[i];
+            appendTotalDifference["totalDifferenceToQs"] = totalDifference;
+            tempArr.push(appendTotalDifference);
+        }
+
+        // sort the array based on the total difference to answers of the questionnaire to the user
+        tempArr.sort((a, b) => parseFloat(a.totalDifferenceToQs) - parseFloat(b.totalDifferenceToQs));
+        this.setState({ result: tempArr });
     }
 
     connectMentor = () => {
