@@ -94,34 +94,6 @@ class FindMentor extends Component {
         console.log(this.state.result)
     }
 
-    // connectMentor = mentor => {
-
-    //     console.log('Connected with Mentor.');
-
-    //     console.log("mentorObj: " + mentor.username)
-    //     console.log("mentorObj: " + mentor.email)
-    //     console.log("mentorObj: " + mentor.location)
-    //     console.log("mentorObj: " + mentor.profession)
-    //     console.log("mentorObj: " + mentor.img)
-
-    //     Axios.post("users/save-mentor/" + this.props.userid, {
-    //         username: mentor.username,
-    //         email: mentor.email,
-    //         profession: mentor.profession,
-    //         location: mentor.location,
-    //         img: mentor.img
-    //     }).then(response => {
-    //         if (response.data) {
-    //             console.log(response.data)
-    //             this.setState({ savedMentor: true })
-    //         }
-    //     })
-    // }
-
-    // passMentor = () => {
-
-    //     console.log('Mentor Passed.');
-    // }
 
     render() {
         if (this.state.loadingQuestionaireResults) {
@@ -134,23 +106,16 @@ class FindMentor extends Component {
                         <Wrapper>
                             {/* loop through array and create card for obj */}
                             {this.state.result.map(mentor => (
-                                // <div className="card text-center mx-auto" key={mentor._id}>
-                                //     <img src={mentor.img} className="card-img-top" alt="..." />
-                                //     <div className="card-body">
-                                //         <h5 className="card-title">{mentor.username}</h5>
-                                //         <h6 className="card-title">Profession: {mentor.profession}</h6>
-                                //         <p className="card-text">{mentor.description}</p>
-                                //         {this.state.savedMentor ? <SuccessBanner>Successfully Saved Mentor</SuccessBanner> : null}
-                                //         <a href="#" id="connect" className="btn btn-primary" onClick={() => this.connectMentor(mentor)}>Connect</a>
-                                //         <a href="#" id="pass" className="btn btn-danger" onClick={this.passMentor}>Pass</a>
-                                //     </div>
-                                // </div>
+
                                 <MentorCard key={mentor._id}
                                     img={mentor.img}
                                     username={mentor.username}
+                                    email={mentor.email}
+                                    location={mentor.location}
                                     profession={mentor.profession}
                                     description={mentor.description}
                                     userid={this.props.userid}
+                                    mentorid={mentor._id}
                                 />
 
                             ))}
