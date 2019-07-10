@@ -28,8 +28,17 @@ const userSchema = new Schema({
         type: Schema.Types.ObjectId,
         ref: "Interest"
     },
-    profileImage: {type: Buffer},
-    location: {type: String}
+    profileImage: {
+      type: Buffer
+    },
+    location: {
+      type: String
+    },
+    savedMentor: [{
+        type: Schema.Types.ObjectId,
+        ref: "SavedMentor"
+    }]
+
 });
 
 userSchema.methods.setPassword = function (password) {

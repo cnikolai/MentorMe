@@ -117,15 +117,12 @@ class Profile extends Component {
         return (
             <div className="container-fluid text-center">
               <div className="row">
-
                 <div className="col-2 user-info">
-                  
 
                   <div className="user-options" id="username" onClick={this.userClick}>
                     Profile
                   
                   </div>
-                  
 
                   <div className="user-options" id='fMentor' name="fMentorClick" onClick={this.fMentorClick}>
                     Connect
@@ -156,13 +153,13 @@ class Profile extends Component {
 
                 <div className="col-10" id="profile-view">
                   <div id="user-profile">
-
+                  
                     <div>
                       {(this.state.isEmptyState || this.state.userClick) && <UserProfile userClick={this.userClick} username={this.props.user} location="La Plata, MO" interests="javascript, python, puzzles" profession="developer" />}
                     </div>
 
                     <div>
-                      {(this.state.isEmptyState || this.state.fMentorClick) && <FindMentor 
+                      {(this.state.isEmptyState || this.state.fMentorClick) && <FindMentor userid={this.props.id}
                             fMentorClick={this.fMentorClick}
                             src={"https://images.pexels.com/photos/1716861/pexels-photo-1716861.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940"}
                             mentorname={"Pika Chu"}
