@@ -100,7 +100,7 @@ class FindMentor extends Component {
         console.log("mentorObj: " + mentor.profession)
         console.log("mentorObj: " + mentor.img)
 
-        Axios.post("/save-mentor/" + this.props.userid, {
+        Axios.post("users/save-mentor/" + this.props.userid, {
             username: mentor.username,
             email: mentor.email,
             profession: mentor.profession,
@@ -108,7 +108,7 @@ class FindMentor extends Component {
             img: mentor.img
         }).then(response => {
             if (response.data) {
-                console.log("saved")
+                console.log(response.data)
             }
         })
     }
