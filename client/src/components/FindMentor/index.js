@@ -87,6 +87,7 @@ class FindMentor extends Component {
         // sort the array based on the total difference to answers of the questionnaire to the user
         tempArr.sort((a, b) => parseFloat(a.totalDifferenceToQs) - parseFloat(b.totalDifferenceToQs));
         this.setState({ result: tempArr });
+        console.log(this.state.result)
     }
 
     connectMentor = () => {
@@ -113,7 +114,7 @@ class FindMentor extends Component {
                                 <div className="card text-center mx-auto" key={mentor._id}>
                                     <img src={mentor.img} className="card-img-top" alt="..." />
                                     <div className="card-body">
-                                        <h5 className="card-title">{mentor.name}</h5>
+                                        <h5 className="card-title">{mentor.username}</h5>
                                         <h6 className="card-title">Profession: {mentor.profession}</h6>
                                         <p className="card-text">{mentor.description}</p>
                                         <a href="#" id="connect" className="btn btn-primary" onClick={this.connectMentor}>Connect</a>
