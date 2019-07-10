@@ -13,14 +13,6 @@ class Profile extends Component {
     this.state = { fMentorClick: false, userClick: true, mentorClick: false, chatClick: false, indeedClick: false, logoutClick: false, questionClick: false }
   }
 
-  // handleClick = () => {
-  //   this.setState({
-      
-  //   })
-  //   console.log('btn was clicked.');
-
-  // }
-
     userClick = () => {
       this.setState({
         userClick: true,
@@ -128,7 +120,7 @@ class Profile extends Component {
                 <div className="col-2 user-info">
 
                   <div className="user-options" id="username" onClick={this.userClick}>
-                    {this.props.user}
+                    Profile
                   
                   </div>
 
@@ -163,7 +155,7 @@ class Profile extends Component {
                   <div id="user-profile">
                   
                     <div>
-                      {(this.state.isEmptyState || this.state.userClick) && <UserProfile userClick={this.userClick} />}
+                      {(this.state.isEmptyState || this.state.userClick) && <UserProfile userClick={this.userClick} username={this.props.user} location="La Plata, MO" interests="javascript, python, puzzles" profession="developer" />}
                     </div>
 
                     <div>

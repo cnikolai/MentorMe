@@ -1,10 +1,16 @@
 #userImage{
-    border-style: solid;  
-    margin-right: 5%;
+    /* border-style: solid;   */
+    /* margin-right: 5%; */
+}
+
+img {
+    height: 250px;
+    width: 250px;
 }
 
 #userInfo {
-    border-style: solid;     
+    /* border-style: solid;      */
+    box-shadow: 2px;
 }
 
 #questions {
@@ -19,3 +25,9 @@
 .profile {
     padding-top: 2.5%;
 }
+
+.display-left {
+    flex-direction: column;
+    display: flex;
+    align-items: flex-start;
+  }

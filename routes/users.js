@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const passport = require('passport');
 const bodyParser = require('body-parser');
+var fs = require('fs');
 
 // Load User model
 const db = require('../models');
@@ -19,6 +20,8 @@ router.post('/register', (req, res) => {
   const { username, password, email, isMentee } = req.body;
   console.log("isMentee: ", isMentee);
   let errors = [];
+  var profileImage = "";
+  var location = "";
 
   if (!username || !password || !email || !isMentee) {
     errors.push({ msg: 'Please enter all fields' });
@@ -55,7 +58,9 @@ router.post('/register', (req, res) => {
         const newUser = new db.User({
           username,
           email,
-          isMentee
+          isMentee,
+          profileImage,
+          location
         });
         newUser.setPassword(req.body.password);
         console.log("newUser: ", newUser);
@@ -143,6 +148,20 @@ router.get("/all-users", function (req, res) {
       // If an error occurred, send it to the client
       res.json(err);
     });
+});
+
+//post profile picture
+router.post("/profile/:id", function (req, res) {
+  return db.User.findOneAndUpdate({ _id: req.params.id }, { $set: { profileImage: req.body } }, { new: false });
+});
+
+//get profile picture
+router.get("/profile/:id", async function (req, res) {
+  // const dbUser = await db.User.findOne({ _id: req.params.id });
+  // fs.readFile(dbUser.profileImage, function (err, data) {
+  //   res.writeHead(200, { 'Content-Type': 'image/jpeg' });
+  //   res.end(data); // Send the file data to the browser.
+  // });
 });
 
 // update interest
