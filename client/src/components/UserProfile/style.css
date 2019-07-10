@@ -26,7 +26,8 @@ img {
     padding-top: 2.5%;
 }
 
-.display-linebreak {
-    white-space: pre-line;
-    text-align: left;
+.display-left {
+    flex-direction: column;
+    display: flex;
+    align-items: flex-start;
   }

@@ -1,35 +1,35 @@
 const mongoose = require("mongoose");
 const crypto = require('crypto');
-const jwt = require('jsonwebtoken');
 const Schema = mongoose.Schema;
 
 const userSchema = new Schema({
     username: {
-        type: String,
+        type: String
         // required: true
     },
     hash: {
-        type: String,
+        type: String
         // required: true
     },
     salt: {
-        type: String,
+        type: String
         // required: true
     },
     email: {
-        type: String,
+        type: String
         // required: true
     },
     // true = mentee, false = mentor
     isMentee: {
-        type: Boolean,
+        type: Boolean
         // required: true
     },
     interest: {
         type: Schema.Types.ObjectId,
         ref: "Interest"
-    }
-
+    },
+    profileImage: {type: Buffer},
+    location: {type: String}
 });
 
 userSchema.methods.setPassword = function (password) {
