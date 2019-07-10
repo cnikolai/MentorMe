@@ -31,25 +31,37 @@ class Login extends Component {
                 password: this.state.password
             })
             .then(response => {
-                console.log('login response: ')
-                console.log(response.data)
+                console.log('login response: ', response.data);
                 if (response.status === 200) {
                     // update App.js state
                     console.log("login username: ", response.data);
-                    this.props.updateUser({
-                        loggedIn: true,
-                        id: response.data._id,
-                        username: response.data.username
-                    })
-                    // update the state to redirect to home
-                    this.setState({
-                        redirectTo: '/profile'
-                    });
+                    if (response.data.register) {
+                        console.log("response: ", response.data.register.errors[0].msg);
+                        var errors = document.getElementById("errors");
+                        errors.innerText = response.data.register.errors[0].msg;
+                        console.log("errors", errors);
+                        //errors.classList.remove("alert alert-danger");
+                        errors.classList.add("alert");
+                        errors.classList.add("alert-danger");
+                        // this.setState({
+                        //     redirectTo: '/login'
+                        // });
+                    }
+                    else {
+                        this.props.updateUser({
+                            loggedIn: true,
+                            id: response.data._id,
+                            username: response.data.username
+                        })
+                        // update the state to redirect to home
+                        this.setState({
+                            redirectTo: '/profile'
+                        });
+                    }
                 }
             }).catch(error => {
                 console.log('login error: ');
                 console.log(error);
-
             })
     }
 
@@ -58,7 +70,12 @@ class Login extends Component {
             return <Redirect to={{ pathname: this.state.redirectTo }} />
         } else {
             return (
-                <div className="container2">
+                <div className="container">
+                    <br></br>
+					<br></br>
+					<div id="errors"></div>
+                    <br></br>
+                    <div className="container2">
                     <form className="form-horizontal">
                         <h4>Login</h4>
                         <div className="form-group">
@@ -98,7 +115,7 @@ class Login extends Component {
                                 type="submit">Login</button>
                         </div>
                     </form>
-
+                </div>
                 </div>
             )
         }
