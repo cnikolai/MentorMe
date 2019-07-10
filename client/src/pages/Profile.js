@@ -155,7 +155,8 @@ class Profile extends Component {
                   <div id="user-profile">
                   
                     <div>
-                      {(this.state.isEmptyState || this.state.userClick) && <UserProfile userClick={this.userClick} username={this.props.user} id={this.props.id}location="La Plata, MO" interests="javascript, python, puzzles" profession="developer" />}
+                      {(this.state.isEmptyState || this.state.userClick) && <UserProfile userClick={this.userClick} username={this.props.user} id={this.props.id} />}
+                      {/* location="La Plata, MO" interests="javascript, python, puzzles" profession="developer" */}
                     </div>
 
                     <div>

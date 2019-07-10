@@ -58,9 +58,7 @@ router.post('/register', (req, res) => {
         const newUser = new db.User({
           username,
           email,
-          isMentee,
-          profileImage,
-          location
+          isMentee
         });
         newUser.setPassword(req.body.password);
         console.log("newUser: ", newUser);
@@ -152,11 +150,12 @@ router.get("/all-users", function (req, res) {
 
 //post profile picture
 router.post("/profile/:id", function (req, res) {
+  console.log(req.body);
   console.log("profile id:" + req.params.id);
   console.log("profile image url: " + req.body.profilepictureurl);
-  return db.User.findOneAndUpdate({ _id: req.params.id }, { $set: { profileImage: req.body.profilepictureurl } },{new: true}, (err, doc) => {
+  return db.User.findOneAndUpdate({ _id: req.params.id }, { $set: { profileImage: req.body.profilepictureurl, location: req.body.location, profession: req.body.profession, interests: req.body.interests } },{new: true}, (err, doc) => {
     if (err) {
-        console.log("Something wrong when updating data!");
+        console.log("Error updating user profile data: ", err);
     }
     console.log(doc);
 });
@@ -167,7 +166,6 @@ router.get("/profile/:id", async function (req, res) {
   console.log("profile id:" + req.params.id);
   db.User.findOne({ _id: req.params.id })
     // ..and populate all of the interests associated with it
-    .populate("interest")
     .then(function (dbUser) {
       console.log("dbUser: ", dbUser);
       res.json(dbUser);
