@@ -20,8 +20,6 @@ router.post('/register', (req, res) => {
   const { username, password, email, isMentee } = req.body;
   console.log("isMentee: ", isMentee);
   let errors = [];
-  var profileImage = "";
-  var location = "";
 
   if (!username || !password || !email || !isMentee) {
     errors.push({ msg: 'Please enter all fields' });
@@ -74,23 +72,46 @@ router.post('/register', (req, res) => {
 // Login
 router.post('/login', bodyParser.urlencoded({ extended: true }), (req, res, next) => {
   console.log("inside post login");
-  passport.authenticate('local', function (err, user, info) {
-    console.log("inside passport logic");
-    console.log("info", info);
-    if (err) { return next(err) }
-    if (!user) {
-      console.log('bad authentication');
-      //req.session.messages = [info.message];
-      return res.redirect('/login')
-    }
-    req.logIn(user, function (err) {
-      console.log('good authentication');
-      console.log("User object: " + req.user);
-      if (err) { return next(err); }
-      // return res.redirect('/?username=' + user.username);
-      return res.json(req.user);
+  const { username, password } = req.body;
+  let errors = [];
+
+  if (!username || !password) {
+    errors.push({ msg: 'Please enter all fields' });
+  }
+
+  if (errors.length > 0) {
+    res.json({
+      'register': {
+        errors,
+        username,
+        password
+      }
     });
-  })(req, res, next);
+  } else {
+    passport.authenticate('local', function (err, user, info) {
+      console.log("inside passport logic");
+      console.log("info", info);
+      if (err) { return next(err) }
+      if (!user) {
+        console.log('bad authentication');
+        req.session.messages = [info.message];
+        errors.push({ msg: 'Incorrect username or password' });
+        //return res.redirect('/users/login')
+        res.json({
+          'register': {
+            errors
+          }
+        });
+      }
+      req.logIn(user, function (err) {
+        console.log('good authentication');
+        console.log("User object: " + req.user);
+        if (err) { return next(err); }
+        // return res.redirect('/?username=' + user.username);
+        return res.json(req.user);
+      });
+    })(req, res, next);
+  }//end else
 });
 
 // Logout
