@@ -174,7 +174,7 @@ class Profile extends Component {
                     </div>
 
                     <div>
-                      {(this.state.isEmptyState || this.state.mentorClick) && <Matches mentorClick={this.mentorClick} />}
+                      {(this.state.isEmptyState || this.state.mentorClick) && <Matches mentorClick={this.mentorClick} userid={this.props.id} />}
                     </div>
 
                     <div>

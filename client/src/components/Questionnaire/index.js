@@ -62,7 +62,10 @@ class Questionnaire extends Component {
             }).then(response => {
                 if (response.data.interest) {
                     this.setState({ successfulSubmit: true });
-                    this.props.submittedForm();
+                    if (this.props.submittedForm) {
+                        this.props.submittedForm();
+                    }
+
                 }
             });
         } else {
@@ -75,7 +78,9 @@ class Questionnaire extends Component {
             }).then(response => {
                 if (response.data.interest) {
                     this.setState({ successfulSubmit: true });
-                    this.props.submittedForm();
+                    if (this.props.submittedForm) {
+                        this.props.submittedForm();
+                    }
                 }
             });
         }

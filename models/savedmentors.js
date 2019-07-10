@@ -15,6 +15,9 @@ const savedMentorSchema = new Schema({
     },
     location: {
         type: String
+    },
+    img: {
+        type: String
     }
 });
 
