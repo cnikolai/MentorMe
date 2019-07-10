@@ -31,11 +31,12 @@ class Matches extends Component {
                 {/* <div className="row"> */}
                 <Wrapper>
                     {this.state.mentors.map(mentor => (
-                        <div className="card col" key={mentor._id}>
+                        <div className="card" key={mentor._id}>
                             <img className="card-img-top" src={mentor.img} alt="Card image cap" />
                             <div className="card-body">
                                 <h5 className="card-title">{mentor.username}</h5>
                                 <h6 className="card-title">Profession: {mentor.profession}</h6>
+                                <h6 className="card-title">Email: {mentor.email}</h6>
                                 {/* <p className="card-text">Avid pursuer of clues and interested in broadening horizons</p> */}
                                 <a href="#" className="btn btn-primary send-mes">Send a Message</a>
                             </div>

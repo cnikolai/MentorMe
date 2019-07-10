@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import "./style.css";
 import RadioButton from "../RadioButton"
 import Axios from 'axios';
+import SuccessBanner from "../SuccessBanner";
+import ErrorBanner from "../ErrorBanner";
 
 class Questionnaire extends Component {
 
@@ -15,6 +17,7 @@ class Questionnaire extends Component {
         ],
         previouslyAnswered: false,
         successfulSubmit: false,
+        errorHappened: false,
         q1: "",
         q2: "",
         q3: "",
@@ -61,11 +64,12 @@ class Questionnaire extends Component {
                 q5: this.state.q5
             }).then(response => {
                 if (response.data.interest) {
-                    this.setState({ successfulSubmit: true });
+                    this.setState({ successfulSubmit: true, errorHappened: false });
                     if (this.props.submittedForm) {
                         this.props.submittedForm();
                     }
-
+                } else {
+                    this.setState({ successfulSubmit: false, errorHappened: true })
                 }
             });
         } else {
@@ -77,10 +81,12 @@ class Questionnaire extends Component {
                 q5: this.state.q5
             }).then(response => {
                 if (response.data.interest) {
-                    this.setState({ successfulSubmit: true });
+                    this.setState({ successfulSubmit: true, errorHappened: false });
                     if (this.props.submittedForm) {
                         this.props.submittedForm();
                     }
+                } else {
+                    this.setState({ successfulSubmit: false, errorHappened: true })
                 }
             });
         }
@@ -151,6 +157,10 @@ class Questionnaire extends Component {
                             buttonName={item.buttonName} />
                     ))}
                 </form>
+
+                {this.state.successfulSubmit ? <SuccessBanner>Successfully saved answers</SuccessBanner> : null}
+                {this.state.errorHappened ? <ErrorBanner>Error. Something went wrong</ErrorBanner> : null}
+
 
                 <button id="done" type="submit" value="text" onClick={this.handleSubmit}>Done</button>
             </div>

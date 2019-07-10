@@ -2,6 +2,10 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const savedMentorSchema = new Schema({
+    mentorid: {
+        type: String,
+        // required: true
+    },
     username: {
         type: String,
         // required: true
