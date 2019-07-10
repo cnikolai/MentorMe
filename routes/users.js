@@ -194,7 +194,7 @@ router.get("/mentors", function (req, res) {
     isMentee: false
   })
     // ..and populate all of the interests associated with it
-    .populate("interests")
+    .populate("interest")
     .then(function (dbUser) {
       console.log(dbUser)
       res.json(dbUser);
