@@ -4,12 +4,14 @@ import React, { Component } from 'react';
 import "./style.css";
 import Axios from 'axios';
 import Wrapper from '../Wrapper';
-
+import SavedMentorCard from "../SavedMentorCard";
+import ErrorBanner from "../ErrorBanner";
 
 class Matches extends Component {
 
     state = {
-        mentors: []
+        mentors: [],
+        errorHappened: false
     }
 
     componentDidMount() {
@@ -23,67 +25,44 @@ class Matches extends Component {
         })
     }
 
+    removeMentor = mentorid => {
+        Axios.delete("/users/delete-mentor/" + mentorid).then(repsonse => {
+            if (repsonse.data) {
+                // Filter this.state.mentors for mentors with an id not equal to the id being removed
+                const mentors = this.state.mentors.filter(mentor => mentor._id !== mentorid);
+                // Set this.state.mentors equal to the new mentors array
+                this.setState({ mentors, errorHappened: false });
+            } else {
+                this.setState({ errorHappened: true });
+            }
+
+        });
+
+
+    };
+
     render() {
         return (
             <div className="container-fluid text-center">
                 <h1 className="text-center">Your Connections</h1>
 
-                {/* <div className="row"> */}
+                {this.state.errorHappened ? <ErrorBanner>Error. Something went wrong. Could not delete mentor</ErrorBanner> : null}
+
                 <Wrapper>
                     {this.state.mentors.map(mentor => (
-                        <div className="card" key={mentor._id}>
-                            <img className="card-img-top" src={mentor.img} alt="Card image cap" />
-                            <div className="card-body">
-                                <h5 className="card-title">{mentor.username}</h5>
-                                <h6 className="card-title">Profession: {mentor.profession}</h6>
-                                <h6 className="card-title">Email: {mentor.email}</h6>
-                                {/* <p className="card-text">Avid pursuer of clues and interested in broadening horizons</p> */}
-                                <a href="#" className="btn btn-primary send-mes">Send a Message</a>
-                            </div>
-                        </div>
+
+                        <SavedMentorCard key={mentor._id}
+                            img={mentor.profileImage}
+                            username={mentor.username}
+                            profession={mentor.profession}
+                            email={mentor.email}
+                            interests={mentor.interests}
+                            mentorid={mentor._id}
+                            removeMentor={this.removeMentor}
+                        />
                     ))}
                 </Wrapper>
-                {/* <div className="card col">
-                        <img className="card-img-top" src="https://images.pexels.com/photos/1716861/pexels-photo-1716861.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Card image cap" />
-                        <div className="card-body">
-                            <h5 className="card-title">Pika Chu</h5>
-                            <h6 className="card-title">Profession: Detective</h6>
-                            <p className="card-text">Avid pursuer of clues and interested in broadening horizons</p>
-                            <a href="#" className="btn btn-primary send-mes">Send a Message</a>
-                        </div>
-                    </div> */}
 
-                {/* <div className="card col">
-                        <img className="card-img-top" src="..." alt="Card image cap" />
-                        <div className="card-body">
-                            <h5 className="card-title">Name</h5>
-                            <h6 className="card-title">Profession</h6>
-                            <p className="card-text">Brief information about interests and profession.</p>
-                            <a href="#" className="btn btn-primary send-mes">Send a Message</a>
-                        </div>
-                    </div>
-
-                    <div className="card col">
-                        <img className="card-img-top" src="..." alt="Card image cap" />
-                        <div className="card-body">
-                            <h5 className="card-title">Name</h5>
-                            <h6 className="card-title">Profession</h6>
-                            <p className="card-text">Brief information about interests and profession.</p>
-                            <a href="#" className="btn btn-primary send-mes">Send a Message</a>
-                        </div>
-                    </div>
-
-                    <div className="card col">
-                        <img className="card-img-top" src="..." alt="Card image cap" />
-                        <div className="card-body">
-                            <h5 className="card-title">Name</h5>
-                            <h6 className="card-title">Profession</h6>
-                            <p className="card-text">Brief information about interests and profession.</p>
-                            <a href="#" className="btn btn-primary send-mes">Send a Message</a>
-                        </div>
-                    </div> */}
-
-                {/* </div> */}
             </div>
         );
     };

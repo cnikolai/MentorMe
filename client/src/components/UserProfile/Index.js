@@ -10,8 +10,8 @@ class UserProfile extends Component {
         var url = "https://res.cloudinary.com/dsegwvrng/image/upload/v1562724476/blank-profile-picture-973460_640_kokqis.png";
         var url = "";
         var encoded = encodeURI(url);
-        this.state = { profilepictureurl: '', interests: '', location: '', profession: '', edit: false};
-         //this.state = { pictures: [] };
+        this.state = { profilepictureurl: '', interests: '', location: '', profession: '', edit: false };
+        //this.state = { pictures: [] };
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleEdit = this.handleEdit.bind(this);
@@ -55,11 +55,11 @@ class UserProfile extends Component {
         event.preventDefault();
         console.log('handleSubmit');
         var id = this.props.id;
-        console.log("id inside handlesubmit: "+ id);
+        console.log("id inside handlesubmit: " + id);
         axios
             .post('/users/profile/' + id, {
                 profilepictureurl: encodeURI(this.state.profilepictureurl),
-                location: this.state.location, 
+                location: this.state.location,
                 profession: this.state.profession,
                 interests: this.state.interests
             })
@@ -70,26 +70,26 @@ class UserProfile extends Component {
                 console.log('profile picture url error: ');
                 console.log(error);
             });
-            this.setState({
-                edit: false
-            });
+        this.setState({
+            edit: false
+        });
     }
 
     componentDidMount() {
         axios.get("/users/profile/" + this.props.id)
-        .then(res => {
-            console.log("res.data inside profile: ", res.data);
+            .then(res => {
+                console.log("res.data inside profile: ", res.data);
                 this.setState({
                     interests: res.data.interests,
                     location: res.data.location,
                     profession: res.data.profession,
-                    profilepictureurl: res.profileImage
+                    profilepictureurl: res.data.profileImage
                 });
-        })
-        .catch(function (err) {
-            // If an error occurred, send it to the client
-            console.log(err);
-        });
+            })
+            .catch(function (err) {
+                // If an error occurred, send it to the client
+                console.log(err);
+            });
     }
 
     render() {
@@ -104,14 +104,14 @@ class UserProfile extends Component {
                             <img src={this.state.profilepictureurl} alt="Profile Picture"></img>
                             {/* {this.state.pictures.map(picture => (<img key={picture.name} src={URL.createObjectURL(picture)} alt={picture.name}/>))} */}
                         </div>
-                            {/* <div className="form-group ">
+                        {/* <div className="form-group ">
                                 <div className="col-7"></div>
                                 <button
                                     className="btn btn-primary col-md-2 display-left"
                                     onClick={this.handleSubmit}
                                     type="submit">Upload</button>
                             </div> */}
-                            {/* <div className="display-left">
+                        {/* <div className="display-left">
                                 <ImageUploader
                                     withIcon={true}
                                     singleImage={true}
@@ -121,23 +121,23 @@ class UserProfile extends Component {
                                     maxFileSize={5242880}
                                 />
                             </div> */}
-                            <div id="userInfo">
-                                <br></br>
-                                <div className="display-left"><strong>User Name:</strong> {this.props.username}</div><br></br>
-                                <div className="display-left"><strong>User Location:</strong> {this.state.location}</div><br></br>
-                                <div className="display-left"><strong>User Profession: </strong>{this.state.profession}</div><br></br>
-                                <div className="display-left"><strong>User Interests: </strong>{this.state.interests}</div>
-                            </div>
-                            <form>
-                        <div className="form-group">
-                            <button
-                                className="btn btn-primary col-8 display-left"
-                                onClick={this.handleEdit}
-                                type="submit">Edit</button>
+                        <div id="userInfo">
+                            <br></br>
+                            <div className="display-left"><strong>User Name:</strong> {this.props.username}</div><br></br>
+                            <div className="display-left"><strong>User Location:</strong> {this.state.location}</div><br></br>
+                            <div className="display-left"><strong>User Profession: </strong>{this.state.profession}</div><br></br>
+                            <div className="display-left"><strong>User Interests: </strong>{this.state.interests}</div>
                         </div>
-                    </form>
+                        <form>
+                            <div className="form-group">
+                                <button
+                                    className="btn btn-primary col-8 display-left"
+                                    onClick={this.handleEdit}
+                                    type="submit">Edit</button>
+                            </div>
+                        </form>
+                    </div>
                 </div>
-            </div>
             );
         } else {
             return (

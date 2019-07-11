@@ -20,7 +20,10 @@ const savedMentorSchema = new Schema({
     location: {
         type: String
     },
-    img: {
+    profileImage: {
+        type: String
+    },
+    interests: {
         type: String
     }
 });
