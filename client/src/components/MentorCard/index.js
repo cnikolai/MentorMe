@@ -13,7 +13,7 @@ class MentorCard extends Component {
         errorHappened: false
     }
 
-    connectMentor = (mentorid, username, email, location, profession, img) => {
+    connectMentor = (mentorid, username, email, location, profession, interests, img) => {
 
         console.log('Connected with Mentor.');
 
@@ -22,7 +22,7 @@ class MentorCard extends Component {
         console.log("email: " + email)
         console.log("location: " + location)
         console.log("profession: " + profession)
-        console.log("img: " + img)
+        console.log("profileImage: " + img)
 
         Axios.get("/users/single-user/" + this.props.userid).then(response => {
             console.log(response.data.savedMentor);
@@ -39,7 +39,8 @@ class MentorCard extends Component {
                     email: email,
                     profession: profession,
                     location: location,
-                    img: img
+                    interests: interests,
+                    profileImage: img
                 }).then(response => {
                     if (response.data) {
                         console.log(response.data)
@@ -66,11 +67,12 @@ class MentorCard extends Component {
                 <div className="card-body">
                     <h5 className="card-title">{this.props.username}</h5>
                     <h6 className="card-title">Profession: {this.props.profession}</h6>
+                    <h6 className="card-title">Interests: {this.props.interests}</h6>
                     <p className="card-text">{this.props.description}</p>
                     {this.state.savedMentor ? <SuccessBanner>Successfully saved mentor</SuccessBanner> : null}
                     {this.state.alreadySavedMentor ? <WarningBanner>You already saved that mentor</WarningBanner> : null}
                     {this.state.errorHappened ? <ErrorBanner>Error. Something went wrong</ErrorBanner> : null}
-                    <a href="#" id="connect" className="btn btn-primary" onClick={() => this.connectMentor(this.props.mentorid, this.props.username, this.props.email, this.props.location, this.props.profession, this.props.img)}>Connect</a>
+                    <a href="#" id="connect" className="btn btn-primary" onClick={() => this.connectMentor(this.props.mentorid, this.props.username, this.props.email, this.props.location, this.props.profession, this.props.interests, this.props.img)}>Connect</a>
                     {/* <a href="#" id="pass" className="btn btn-danger" onClick={this.passMentor}>Pass</a> */}
                 </div>
             </div>

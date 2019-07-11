@@ -52,10 +52,11 @@ class Matches extends Component {
                     {this.state.mentors.map(mentor => (
 
                         <SavedMentorCard key={mentor._id}
-                            img={mentor.img}
+                            img={mentor.profileImage}
                             username={mentor.username}
                             profession={mentor.profession}
                             email={mentor.email}
+                            interests={mentor.interests}
                             mentorid={mentor._id}
                             removeMentor={this.removeMentor}
                         />

@@ -108,12 +108,13 @@ class FindMentor extends Component {
                             {this.state.result.map(mentor => (
 
                                 <MentorCard key={mentor._id}
-                                    img={mentor.img}
+                                    img={mentor.profileImage}
                                     username={mentor.username}
                                     email={mentor.email}
                                     location={mentor.location}
                                     profession={mentor.profession}
                                     description={mentor.description}
+                                    interests={mentor.interests}
                                     userid={this.props.userid}
                                     mentorid={mentor._id}
                                 />

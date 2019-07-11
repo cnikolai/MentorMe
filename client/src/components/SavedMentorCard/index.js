@@ -10,6 +10,7 @@ class SavedMentorCard extends Component {
                     <h5 className="card-title">{this.props.username}</h5>
                     <h6 className="card-title">Profession: {this.props.profession}</h6>
                     <h6 className="card-title">Email: {this.props.email}</h6>
+                    <h6 className="card-title">Interests: {this.props.interests}</h6>
                     {/* <p className="card-text">Avid pursuer of clues and interested in broadening horizons</p> */}
                     <a href="#" className="btn btn-primary send-mes">Send a Message</a>
                     <a href="#" className="btn btn-danger" onClick={() => this.props.removeMentor(this.props.mentorid)}>Delete Mentor</a>
